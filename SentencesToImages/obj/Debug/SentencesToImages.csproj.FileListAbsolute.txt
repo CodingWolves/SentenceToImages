@@ -1,0 +1,10 @@
+C:\Users\IDO\Documents\GitHub\SentencesToImages\SentencesToImages\bin\Debug\SentencesToImages.exe.config
+C:\Users\IDO\Documents\GitHub\SentencesToImages\SentencesToImages\bin\Debug\SentencesToImages.exe
+C:\Users\IDO\Documents\GitHub\SentencesToImages\SentencesToImages\bin\Debug\SentencesToImages.pdb
+C:\Users\IDO\Documents\GitHub\SentencesToImages\SentencesToImages\obj\Debug\SentencesToImages.csprojAssemblyReference.cache
+C:\Users\IDO\Documents\GitHub\SentencesToImages\SentencesToImages\obj\Debug\SentencesToImages.Form1.resources
+C:\Users\IDO\Documents\GitHub\SentencesToImages\SentencesToImages\obj\Debug\SentencesToImages.Properties.Resources.resources
+C:\Users\IDO\Documents\GitHub\SentencesToImages\SentencesToImages\obj\Debug\SentencesToImages.csproj.GenerateResource.cache
+C:\Users\IDO\Documents\GitHub\SentencesToImages\SentencesToImages\obj\Debug\SentencesToImages.csproj.CoreCompileInputs.cache
+C:\Users\IDO\Documents\GitHub\SentencesToImages\SentencesToImages\obj\Debug\SentencesToImages.exe
+C:\Users\IDO\Documents\GitHub\SentencesToImages\SentencesToImages\obj\Debug\SentencesToImages.pdb
