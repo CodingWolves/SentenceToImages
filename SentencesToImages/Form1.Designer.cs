@@ -73,7 +73,8 @@
             // previewPictureBox
             // 
             this.previewPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.previewPictureBox.Location = new System.Drawing.Point(8, 23);
+            this.previewPictureBox.Location = new System.Drawing.Point(12, 35);
+            this.previewPictureBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.previewPictureBox.Name = "previewPictureBox";
             this.previewPictureBox.Size = new System.Drawing.Size(511, 402);
             this.previewPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -84,9 +85,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(8, 7);
+            this.label1.Location = new System.Drawing.Point(12, 11);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 13);
+            this.label1.Size = new System.Drawing.Size(63, 20);
             this.label1.TabIndex = 1;
             this.label1.Text = "Preview";
             // 
@@ -95,10 +97,11 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.previewPictureBox);
-            this.panel1.Location = new System.Drawing.Point(259, 3);
+            this.panel1.Location = new System.Drawing.Point(388, 5);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(5);
-            this.panel1.Size = new System.Drawing.Size(529, 435);
+            this.panel1.Padding = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.panel1.Size = new System.Drawing.Size(792, 668);
             this.panel1.TabIndex = 2;
             // 
             // sentencesListBox
@@ -108,52 +111,55 @@
             this.sentencesListBox.Name = "sentencesListBox";
             this.sentencesListBox.Size = new System.Drawing.Size(241, 134);
             this.sentencesListBox.TabIndex = 3;
-            this.sentencesListBox.SelectedIndexChanged += new System.EventHandler(this.sentencesListBox_SelectedIndexChanged);
-            this.sentencesListBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.sentencesListBox_KeyDown);
+            this.sentencesListBox.SelectedIndexChanged += new System.EventHandler(this.SentencesListBox_SelectedIndexChanged);
+            this.sentencesListBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SentencesListBox_KeyDown);
             // 
             // addSensFileButton
             // 
             this.addSensFileButton.Location = new System.Drawing.Point(12, 6);
             this.addSensFileButton.Name = "addSensFileButton";
-            this.addSensFileButton.Size = new System.Drawing.Size(241, 53);
+            this.addSensFileButton.Size = new System.Drawing.Size(362, 82);
             this.addSensFileButton.TabIndex = 4;
             this.addSensFileButton.Text = "Add Sentences File";
             this.addSensFileButton.UseVisualStyleBackColor = true;
-            this.addSensFileButton.Click += new System.EventHandler(this.addSensFileButton_Click);
+            this.addSensFileButton.Click += new System.EventHandler(this.AddSensFileButton_Click);
             // 
             // saveImagesButton
             // 
-            this.saveImagesButton.Location = new System.Drawing.Point(12, 385);
+            this.saveImagesButton.Location = new System.Drawing.Point(18, 592);
+            this.saveImagesButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.saveImagesButton.Name = "saveImagesButton";
-            this.saveImagesButton.Size = new System.Drawing.Size(241, 53);
+            this.saveImagesButton.Size = new System.Drawing.Size(362, 82);
             this.saveImagesButton.TabIndex = 5;
             this.saveImagesButton.Text = "Save Images";
             this.saveImagesButton.UseVisualStyleBackColor = true;
-            this.saveImagesButton.Click += new System.EventHandler(this.saveImagesButton_Click);
+            this.saveImagesButton.Click += new System.EventHandler(this.SaveImagesButton_Click);
             // 
             // outputFolderTextBox
             // 
-            this.outputFolderTextBox.Location = new System.Drawing.Point(12, 359);
+            this.outputFolderTextBox.Location = new System.Drawing.Point(18, 552);
+            this.outputFolderTextBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.outputFolderTextBox.Name = "outputFolderTextBox";
-            this.outputFolderTextBox.Size = new System.Drawing.Size(201, 20);
+            this.outputFolderTextBox.Size = new System.Drawing.Size(300, 26);
             this.outputFolderTextBox.TabIndex = 6;
             // 
             // chooseOutputFolderButton
             // 
-            this.chooseOutputFolderButton.Location = new System.Drawing.Point(219, 358);
+            this.chooseOutputFolderButton.Location = new System.Drawing.Point(328, 551);
+            this.chooseOutputFolderButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.chooseOutputFolderButton.Name = "chooseOutputFolderButton";
-            this.chooseOutputFolderButton.Size = new System.Drawing.Size(34, 23);
+            this.chooseOutputFolderButton.Size = new System.Drawing.Size(51, 35);
             this.chooseOutputFolderButton.TabIndex = 7;
             this.chooseOutputFolderButton.Text = "...";
             this.chooseOutputFolderButton.UseVisualStyleBackColor = true;
-            this.chooseOutputFolderButton.Click += new System.EventHandler(this.chooseOutputFolderButton_Click);
+            this.chooseOutputFolderButton.Click += new System.EventHandler(this.ChooseOutputFolderButton_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(9, 343);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(71, 13);
+            this.label2.Size = new System.Drawing.Size(107, 20);
             this.label2.TabIndex = 8;
             this.label2.Text = "Output Folder";
             // 
@@ -162,7 +168,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(9, 189);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(58, 13);
+            this.label3.Size = new System.Drawing.Size(86, 20);
             this.label3.TabIndex = 9;
             this.label3.Text = "Sentences";
             // 
@@ -188,7 +194,7 @@
             this.defaultBackColorBox.Size = new System.Drawing.Size(30, 30);
             this.defaultBackColorBox.TabIndex = 12;
             this.defaultBackColorBox.TabStop = false;
-            this.defaultBackColorBox.DoubleClick += new System.EventHandler(this.defaultBackColorBox_DoubleClick);
+            this.defaultBackColorBox.DoubleClick += new System.EventHandler(this.DefaultBackColorBox_DoubleClick);
             // 
             // tabControl1
             // 
@@ -361,7 +367,7 @@
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.label4);
@@ -374,6 +380,7 @@
             this.Controls.Add(this.addSensFileButton);
             this.Controls.Add(this.sentencesListBox);
             this.Controls.Add(this.panel1);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.previewPictureBox)).EndInit();
