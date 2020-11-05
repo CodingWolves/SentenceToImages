@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Forms;
@@ -17,6 +18,25 @@ namespace SentencesToImages
             InitializeComponent();
             _sentences = new List<SentenceGraphics>();
             defaultBackColorBox.BackColor = SentenceGraphics.DEFAULT_BACK_COLOR;
+        }
+
+        public void PreviewSentence()
+        {
+            SentenceGraphics sentence = (SentenceGraphics)sentencesListBox.SelectedItem;
+            if(sentence == null)
+                return;
+            Image originalImage = sentence.MakeBitmap();
+            Image newPreview = new Bitmap((int)(originalImage.Width * previewZoom), (int)(originalImage.Height * previewZoom));
+            Graphics graphics = Graphics.FromImage(newPreview);
+            graphics.ScaleTransform(previewZoom, previewZoom);
+            graphics.Clear(sentence.GetBackColor());
+            graphics.DrawImage(originalImage, new Point(0, 0));
+            graphics.Flush();
+            graphics.Dispose();
+            originalImage.Dispose();
+            previewPictureBox.Image?.Dispose();
+
+            previewPictureBox.Image = newPreview;
         }
 
         private void RefreshSentencesListBox()
@@ -53,15 +73,16 @@ namespace SentencesToImages
         {
             var sentence = (SentenceGraphics)sentencesListBox.SelectedItem;
             if(sentence == null) return;
-            previewPictureBox.Image?.Dispose();
-            previewZoom = 1f;
-            backgroundColorBox.BackColor = sentence.GetBackColor();
+            //previewZoom = 1f;
+            currentBackColorBox.BackColor = sentence.GetBackColor();
             currentFontSizeTrackBar.Value = (int)sentence.GetFont().Size;
             currentImageSizeTrackBar.Value = sentence.GetImageSize().Width;
-            previewSentence();
+            CurrentFontSizeLabel.Text = sentence.GetFont().Size.ToString();
+            CurrentImageSizeLabel.Text = sentence.GetImageSize().Width.ToString();
+            PreviewSentence();
         }
 
-        private void SentenceBackColorBox_DoubleClick(object sender, EventArgs e)
+        private void CurrentBackColorBox_DoubleClick(object sender, EventArgs e)
         {
             var sentence = (SentenceGraphics)sentencesListBox.SelectedItem;
             if(sentence == null)
@@ -72,7 +93,7 @@ namespace SentencesToImages
 
             if (colorDialog1.ShowDialog() != DialogResult.OK) return;
             sentence.SetBackColor(colorDialog1.Color);
-            SentencesListBox_SelectedIndexChanged(sender, e);
+            PreviewSentence();
         }
 
         private void DefaultBackColorBox_DoubleClick(object sender, EventArgs e)
@@ -92,7 +113,7 @@ namespace SentencesToImages
                         if(index < 0)
                             return;
                         SentenceGraphics sentence = (SentenceGraphics)sentencesListBox.SelectedItem;
-                        sentences.Remove(sentence);
+                        _sentences.Remove(sentence);
                         RefreshSentencesListBox();
                         if(sentencesListBox.Items.Count <= index)
                             index--;
@@ -103,14 +124,7 @@ namespace SentencesToImages
             }
         }
 
-        private void applyBackColorToSentenceButton_Click(object sender, EventArgs e)
-        {
-            SentenceGraphics sentence = (SentenceGraphics)sentencesListBox.SelectedItem;
-            if(sentence == null)
-                return;
-            sentence.SetBackColor(backgroundColorBox.BackColor);
-            SentencesListBox_SelectedIndexChanged(sender, e);
-        }
+        
 
         private void SaveImagesButton_Click(object sender, EventArgs e)
         {
@@ -131,61 +145,36 @@ namespace SentencesToImages
             }
         }
 
-        public void previewSentence()
-        {
-            SentenceGraphics sentence = (SentenceGraphics)sentencesListBox.SelectedItem;
-            if(sentence == null)
-                return;
-            Image originalImage = sentence.MakeBitmap();
-            Image newPreview = new Bitmap((int)(originalImage.Width * previewZoom), (int)(originalImage.Height * previewZoom));
-            Graphics graphics = Graphics.FromImage(newPreview);
-            graphics.ScaleTransform(previewZoom, previewZoom);
-            graphics.Clear(sentence.GetBackColor());
-            graphics.DrawImage(originalImage, new Point(0, 0));
-            graphics.Flush();
-            graphics.Dispose();
-            originalImage.Dispose();
-            previewPictureBox.Image.Dispose();
-
-            previewPictureBox.Image = newPreview;
-        }
-
-        public void previewPictureBox_MouseWheel(object sender, MouseEventArgs e)
+        public void PreviewPictureBox_MouseWheel(object sender, MouseEventArgs e)
         {
             SentenceGraphics sentence = (SentenceGraphics)sentencesListBox.SelectedItem;
             if(sentence == null)
                 return;
 
             float numberOfScrolls = e.Delta * SystemInformation.MouseWheelScrollLines / 120f;
-            previewZoom *= 1f + (Math.Sign(numberOfScrolls) / 4.0f);
+            previewZoom *= numberOfScrolls > 0 ? 1.25f : 0.8f;
 
-            previewSentence();
+            ZoomLabel.Text = String.Format("x{0:F2}",previewZoom);
+
+            PreviewSentence();
         }
 
-
-        private void defaultBackColorBox_DoubleClick(object sender, EventArgs e)
-        {
-            if(colorDialog1.ShowDialog() == DialogResult.OK)
-            {
-                SentenceGraphics.DEFAULT_BACK_COLOR = colorDialog1.Color;
-                defaultBackColorBox.BackColor = SentenceGraphics.DEFAULT_BACK_COLOR;
-            }
-        }
-
-        private void defaultFontSizeTrackBar_Scroll(object sender, EventArgs e)
+        private void DefaultFontSizeTrackBar_Scroll(object sender, EventArgs e)
         {
             int fontSize = defaultFontSizeTrackBar.Value;
             Font oldFont = SentenceGraphics.DEFAULT_FONT;
             SentenceGraphics.DEFAULT_FONT = new Font(oldFont.FontFamily, fontSize, oldFont.Style);
+            DefaultFontSizeLabel.Text = fontSize.ToString();
         }
 
-        private void defaultImageSizeTrackBar_Scroll(object sender, EventArgs e)
+        private void DefaultImageSizeTrackBar_Scroll(object sender, EventArgs e)
         {
             int imageSize = defaultImageSizeTrackBar.Value;
             SentenceGraphics.DEFAULT_IMAGE_SIZE = new Size(imageSize, imageSize);
+            DefaultImageSizeLabel.Text = imageSize.ToString();
         }
 
-        private void currentFontSizeTrackBar_Scroll(object sender, EventArgs e)
+        private void CurrentFontSizeTrackBar_Scroll(object sender, EventArgs e)
         {
             SentenceGraphics sentence = (SentenceGraphics)sentencesListBox.SelectedItem;
             if(sentence == null)
@@ -195,12 +184,13 @@ namespace SentencesToImages
                 return;
             Font oldFont = SentenceGraphics.DEFAULT_FONT;
             sentence.SetFont(new Font(oldFont.FontFamily, fontSize, oldFont.Style));
+            CurrentFontSizeLabel.Text = fontSize.ToString();
             sentence.AutoReLine(10);
             //sentencesListBox_SelectedIndexChanged(sender, e);
-            previewSentence();
+            PreviewSentence();
         }
 
-        private void currentImageSizeTrackBar_Scroll(object sender, EventArgs e)
+        private void CurrentImageSizeTrackBar_Scroll(object sender, EventArgs e)
         {
             SentenceGraphics sentence = (SentenceGraphics)sentencesListBox.SelectedItem;
             if(sentence == null)
@@ -209,9 +199,23 @@ namespace SentencesToImages
             if(sentence.GetImageSize().Width == imageSize)
                 return;
             sentence.SetImageSize(new Size(imageSize, imageSize));
+            CurrentImageSizeLabel.Text = imageSize.ToString();
             sentence.AutoReLine(10);
             //sentencesListBox_SelectedIndexChanged(sender, e);
-            previewSentence();
+            PreviewSentence();
+        }
+
+        private void ResetStyleToDefault_Click(object sender, EventArgs e)
+        {
+            SentenceGraphics sentence = (SentenceGraphics)sentencesListBox.SelectedItem;
+            if(sentence == null)
+                return;
+            currentFontSizeTrackBar.Value = defaultFontSizeTrackBar.Value;
+            CurrentFontSizeTrackBar_Scroll(sender, e);
+            currentImageSizeTrackBar.Value = defaultImageSizeTrackBar.Value;
+            CurrentImageSizeTrackBar_Scroll(sender, e);
+            sentence.SetBackColor(defaultBackColorBox.BackColor);
+            SentencesListBox_SelectedIndexChanged(sender, e);
         }
     }
 }
