@@ -17,6 +17,7 @@ namespace SentencesToImages
     public partial class Form1 : Form
     {
         private List<SentenceGraphics> sentences;
+        private float previewZoom = 1f;
         public Form1()
         {
             InitializeComponent();
@@ -61,8 +62,11 @@ namespace SentencesToImages
                 return;
             if(previewPictureBox.Image != null)
                 previewPictureBox.Image.Dispose();
-            backgroundColorBox.BackColor = sentence.GetBackColor();
-            previewPictureBox.Image = sentence.MakeBitmap();
+            previewZoom = 1f;
+            currentBackColorBox.BackColor = sentence.GetBackColor();
+            currentFontSizeTrackBar.Value = (int)sentence.GetFont().Size;
+            currentImageSizeTrackBar.Value = sentence.GetImageSize().Width;
+            previewSentence();
         }
 
         private void sentenceBackColorBox_DoubleClick(object sender, EventArgs e)
@@ -80,15 +84,6 @@ namespace SentencesToImages
             }
         }
 
-        private void defaultBackColorBox_DoubleClick(object sender, EventArgs e)
-        {
-            if(colorDialog1.ShowDialog() == DialogResult.OK)
-            {
-                SentenceGraphics.DEFAULT_BACK_COLOR = colorDialog1.Color;
-                defaultBackColorBox.BackColor = SentenceGraphics.DEFAULT_BACK_COLOR;
-            }
-        }
-
         private void sentencesListBox_KeyDown(object sender, KeyEventArgs e)
         {
             switch(e.KeyCode)
@@ -96,10 +91,13 @@ namespace SentencesToImages
                 case Keys.Delete:
                     {
                         int index = sentencesListBox.SelectedIndex;
-                        if(index < 0)
-                            return;
-                        sentencesListBox.SelectedIndex = index - 1;
-                        sentencesListBox.Items.RemoveAt(index);
+                        SentenceGraphics sentence = (SentenceGraphics)sentencesListBox.SelectedItem;
+                        sentences.Remove(sentence);
+                        RefreshSentencesListBox();
+                        if(sentencesListBox.Items.Count <= index)
+                            index--;
+                        if(sentencesListBox.Items.Count > 0)
+                            sentencesListBox.SelectedIndex = index;
                     }
                     break;
             }
@@ -110,7 +108,7 @@ namespace SentencesToImages
             SentenceGraphics sentence = (SentenceGraphics)sentencesListBox.SelectedItem;
             if(sentence == null)
                 return;
-            sentence.SetBackColor(backgroundColorBox.BackColor);
+            sentence.SetBackColor(currentBackColorBox.BackColor);
             sentencesListBox_SelectedIndexChanged(sender, e);
         }
 
@@ -131,6 +129,89 @@ namespace SentencesToImages
             {
                 Process.Start("explorer.exe", path);
             }
+        }
+
+        public void previewSentence()
+        {
+            SentenceGraphics sentence = (SentenceGraphics)sentencesListBox.SelectedItem;
+            if(sentence == null)
+                return;
+            Image originalImage = sentence.MakeBitmap();
+            Image newPreview = new Bitmap((int)(originalImage.Width * previewZoom), (int)(originalImage.Height * previewZoom));
+            Graphics graphics = Graphics.FromImage(newPreview);
+            graphics.ScaleTransform(previewZoom, previewZoom);
+            graphics.Clear(sentence.GetBackColor());
+            graphics.DrawImage(originalImage, new Point(0, 0));
+            graphics.Flush();
+            graphics.Dispose();
+            originalImage.Dispose();
+            previewPictureBox.Image.Dispose();
+
+            previewPictureBox.Image = newPreview;
+        }
+
+        public void previewPictureBox_MouseWheel(object sender, MouseEventArgs e)
+        {
+            SentenceGraphics sentence = (SentenceGraphics)sentencesListBox.SelectedItem;
+            if(sentence == null)
+                return;
+
+            float numberOfScrolls = e.Delta * SystemInformation.MouseWheelScrollLines / 120f;
+            previewZoom *= 1f + (Math.Sign(numberOfScrolls) / 4.0f);
+
+            previewSentence();
+        }
+
+
+        private void defaultBackColorBox_DoubleClick(object sender, EventArgs e)
+        {
+            if(colorDialog1.ShowDialog() == DialogResult.OK)
+            {
+                SentenceGraphics.DEFAULT_BACK_COLOR = colorDialog1.Color;
+                defaultBackColorBox.BackColor = SentenceGraphics.DEFAULT_BACK_COLOR;
+            }
+        }
+
+        private void defaultFontSizeTrackBar_Scroll(object sender, EventArgs e)
+        {
+            int fontSize = defaultFontSizeTrackBar.Value;
+            Font oldFont = SentenceGraphics.DEFAULT_FONT;
+            SentenceGraphics.DEFAULT_FONT = new Font(oldFont.FontFamily, fontSize, oldFont.Style);
+        }
+
+        private void defaultImageSizeTrackBar_Scroll(object sender, EventArgs e)
+        {
+            int imageSize = defaultImageSizeTrackBar.Value;
+            SentenceGraphics.DEFAULT_IMAGE_SIZE = new Size(imageSize, imageSize);
+        }
+
+        private void currentFontSizeTrackBar_Scroll(object sender, EventArgs e)
+        {
+            SentenceGraphics sentence = (SentenceGraphics)sentencesListBox.SelectedItem;
+            if(sentence == null)
+                return;
+            int fontSize = currentFontSizeTrackBar.Value;
+            if(sentence.GetFont().Size == fontSize)
+                return;
+            Font oldFont = SentenceGraphics.DEFAULT_FONT;
+            sentence.SetFont(new Font(oldFont.FontFamily, fontSize, oldFont.Style));
+            sentence.AutoReLine(10);
+            //sentencesListBox_SelectedIndexChanged(sender, e);
+            previewSentence();
+        }
+
+        private void currentImageSizeTrackBar_Scroll(object sender, EventArgs e)
+        {
+            SentenceGraphics sentence = (SentenceGraphics)sentencesListBox.SelectedItem;
+            if(sentence == null)
+                return;
+            int imageSize = currentImageSizeTrackBar.Value;
+            if(sentence.GetImageSize().Width == imageSize)
+                return;
+            sentence.SetImageSize(new Size(imageSize, imageSize));
+            sentence.AutoReLine(10);
+            //sentencesListBox_SelectedIndexChanged(sender, e);
+            previewSentence();
         }
     }
 }
