@@ -9,7 +9,7 @@ namespace SentencesToImages.Models
 {
     public class SentenceGraphics
     {
-        public static Size DEFAULT_IMAGE_SIZE = new Size(500, 500);
+        public static Size DEFAULT_IMAGE_SIZE = new Size(400, 400);
         public static Font DEFAULT_FONT = new Font(FontFamily.GenericSerif, 20, FontStyle.Regular);
         public static Color DEFAULT_BACK_COLOR = Color.White;
         private Font font;
@@ -73,6 +73,8 @@ namespace SentencesToImages.Models
             {
                 splitIndex = textLine.IndexOf(' ', splitIndex+1);
             }
+            if(splitIndex <= 0)
+                return;
             this.textLines.Insert(lineIndex + 1, textLine.Substring(splitIndex).Trim(' '));
             this.textLines[lineIndex] = textLine.Substring(0, splitIndex).Trim(' ');
         }
@@ -88,6 +90,9 @@ namespace SentencesToImages.Models
 
         public void AutoReLine(double paddingPercenteage)
         {
+            while(this.textLines.Count > 1)
+                JoinLineAndNext(0);
+
             Bitmap bitmap = new Bitmap(this.imageSize.Width, this.imageSize.Height);
             Graphics graphics = Graphics.FromImage(bitmap);
 
@@ -96,7 +101,7 @@ namespace SentencesToImages.Models
             {
                 string text = this.textLines[i];
                 SizeF sizef = graphics.MeasureString(text, this.font);
-                if(sizef.Width > this.imageSize.Width*(1.0- paddingPercenteage/100))
+                if(sizef.Width > this.imageSize.Width * (1.0 - paddingPercenteage / 100))
                 {
                     if(spacesFromEnd > 0)
                     {
@@ -105,9 +110,10 @@ namespace SentencesToImages.Models
                     }
                     SplitLine(i, text.Count((char ch) => ch == ' ') - spacesFromEnd);
                     spacesFromEnd++;
-                    if(spacesFromEnd > text.Count((char ch) => ch == ' '))
+                    if(spacesFromEnd >= text.Count((char ch) => ch == ' '))
                     {
                         spacesFromEnd = 0;
+                        i++;
                     }
                     i--;
                     continue;
@@ -127,13 +133,13 @@ namespace SentencesToImages.Models
             graphics.Clear(this.backColor);
 
             float lineHeight = graphics.MeasureString("iLgypj", this.font).Height;
-            float startY = -lineHeight * (this.textLines.Count / 2.0f);
+            float startY = -lineHeight * (this.textLines.Count / 2f) + lineHeight / 2f;
 
             for (int i=0;i<this.textLines.Count;i++)
             {
                 string text = this.textLines[i];
                 SizeF textSize = graphics.MeasureString(text, this.font);
-                graphics.DrawString(text, this.font, Brushes.Black, imWid / 2 - textSize.Width / 2, startY + imHei / 2 - textSize.Height / 2 + lineHeight*i);
+                graphics.DrawString(text, this.font, Brushes.Black, imWid / 2f - textSize.Width / 2f, startY + imHei / 2f - textSize.Height / 2f + lineHeight*i);
             }
 
             graphics.Flush();
