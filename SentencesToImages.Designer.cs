@@ -1,6 +1,6 @@
 ﻿namespace SentencesToImages
 {
-    partial class Form1
+    partial class SentencesToImages
     {
         /// <summary>
         /// Required designer variable.
@@ -31,6 +31,8 @@
             this.previewPictureBox = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.ZoomLabel = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.sentencesListBox = new System.Windows.Forms.ListBox();
             this.addSensFileButton = new System.Windows.Forms.Button();
             this.saveImagesButton = new System.Windows.Forms.Button();
@@ -45,25 +47,24 @@
             this.defaultBackColorBox = new System.Windows.Forms.PictureBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.DefaultFontSizeLabel = new System.Windows.Forms.Label();
+            this.DefaultImageSizeLabel = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.defaultImageSizeTrackBar = new System.Windows.Forms.TrackBar();
             this.defaultFontSizeTrackBar = new System.Windows.Forms.TrackBar();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.ResetStyleToDefault = new System.Windows.Forms.Button();
+            this.CurrentImageSizeLabel = new System.Windows.Forms.Label();
+            this.CurrentFontSizeLabel = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.currentImageSizeTrackBar = new System.Windows.Forms.TrackBar();
             this.label7 = new System.Windows.Forms.Label();
             this.currentFontSizeTrackBar = new System.Windows.Forms.TrackBar();
             this.label10 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.DefaultImageSizeLabel = new System.Windows.Forms.Label();
-            this.DefaultFontSizeLabel = new System.Windows.Forms.Label();
-            this.CurrentFontSizeLabel = new System.Windows.Forms.Label();
-            this.CurrentImageSizeLabel = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.ZoomLabel = new System.Windows.Forms.Label();
-            this.ResetStyleToDefault = new System.Windows.Forms.Button();
+            this.ResetAllToDefault = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.previewPictureBox)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.currentBackColorBox)).BeginInit();
@@ -109,6 +110,24 @@
             this.panel1.Padding = new System.Windows.Forms.Padding(5);
             this.panel1.Size = new System.Drawing.Size(529, 435);
             this.panel1.TabIndex = 2;
+            // 
+            // ZoomLabel
+            // 
+            this.ZoomLabel.AutoSize = true;
+            this.ZoomLabel.Location = new System.Drawing.Point(478, 7);
+            this.ZoomLabel.Name = "ZoomLabel";
+            this.ZoomLabel.Size = new System.Drawing.Size(33, 13);
+            this.ZoomLabel.TabIndex = 3;
+            this.ZoomLabel.Text = "x1.00";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(410, 7);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(70, 13);
+            this.label11.TabIndex = 2;
+            this.label11.Text = "Zoom factor -";
             // 
             // sentencesListBox
             // 
@@ -220,6 +239,7 @@
             // tabPage1
             // 
             this.tabPage1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tabPage1.Controls.Add(this.ResetAllToDefault);
             this.tabPage1.Controls.Add(this.DefaultFontSizeLabel);
             this.tabPage1.Controls.Add(this.DefaultImageSizeLabel);
             this.tabPage1.Controls.Add(this.label8);
@@ -236,6 +256,26 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Default";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // DefaultFontSizeLabel
+            // 
+            this.DefaultFontSizeLabel.AutoSize = true;
+            this.DefaultFontSizeLabel.Location = new System.Drawing.Point(58, 38);
+            this.DefaultFontSizeLabel.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.DefaultFontSizeLabel.Name = "DefaultFontSizeLabel";
+            this.DefaultFontSizeLabel.Size = new System.Drawing.Size(19, 13);
+            this.DefaultFontSizeLabel.TabIndex = 22;
+            this.DefaultFontSizeLabel.Text = "20";
+            // 
+            // DefaultImageSizeLabel
+            // 
+            this.DefaultImageSizeLabel.AutoSize = true;
+            this.DefaultImageSizeLabel.Location = new System.Drawing.Point(188, 38);
+            this.DefaultImageSizeLabel.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.DefaultImageSizeLabel.Name = "DefaultImageSizeLabel";
+            this.DefaultImageSizeLabel.Size = new System.Drawing.Size(25, 13);
+            this.DefaultImageSizeLabel.TabIndex = 21;
+            this.DefaultImageSizeLabel.Text = "400";
             // 
             // label8
             // 
@@ -322,6 +362,37 @@
             this.tabPage2.Text = "Current";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // ResetStyleToDefault
+            // 
+            this.ResetStyleToDefault.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            this.ResetStyleToDefault.Location = new System.Drawing.Point(175, 5);
+            this.ResetStyleToDefault.Name = "ResetStyleToDefault";
+            this.ResetStyleToDefault.Size = new System.Drawing.Size(51, 29);
+            this.ResetStyleToDefault.TabIndex = 26;
+            this.ResetStyleToDefault.Text = "Reset";
+            this.ResetStyleToDefault.UseVisualStyleBackColor = true;
+            this.ResetStyleToDefault.Click += new System.EventHandler(this.ResetStyleToDefault_Click);
+            // 
+            // CurrentImageSizeLabel
+            // 
+            this.CurrentImageSizeLabel.AutoSize = true;
+            this.CurrentImageSizeLabel.Location = new System.Drawing.Point(188, 38);
+            this.CurrentImageSizeLabel.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.CurrentImageSizeLabel.Name = "CurrentImageSizeLabel";
+            this.CurrentImageSizeLabel.Size = new System.Drawing.Size(25, 13);
+            this.CurrentImageSizeLabel.TabIndex = 25;
+            this.CurrentImageSizeLabel.Text = "400";
+            // 
+            // CurrentFontSizeLabel
+            // 
+            this.CurrentFontSizeLabel.AutoSize = true;
+            this.CurrentFontSizeLabel.Location = new System.Drawing.Point(58, 38);
+            this.CurrentFontSizeLabel.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.CurrentFontSizeLabel.Name = "CurrentFontSizeLabel";
+            this.CurrentFontSizeLabel.Size = new System.Drawing.Size(19, 13);
+            this.CurrentFontSizeLabel.TabIndex = 23;
+            this.CurrentFontSizeLabel.Text = "20";
+            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -396,76 +467,18 @@
             this.label4.TabIndex = 15;
             this.label4.Text = "Settings";
             // 
-            // DefaultImageSizeLabel
+            // ResetAllToDefault
             // 
-            this.DefaultImageSizeLabel.AutoSize = true;
-            this.DefaultImageSizeLabel.Location = new System.Drawing.Point(188, 38);
-            this.DefaultImageSizeLabel.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.DefaultImageSizeLabel.Name = "DefaultImageSizeLabel";
-            this.DefaultImageSizeLabel.Size = new System.Drawing.Size(25, 13);
-            this.DefaultImageSizeLabel.TabIndex = 21;
-            this.DefaultImageSizeLabel.Text = "400";
+            this.ResetAllToDefault.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            this.ResetAllToDefault.Location = new System.Drawing.Point(154, 5);
+            this.ResetAllToDefault.Name = "ResetAllToDefault";
+            this.ResetAllToDefault.Size = new System.Drawing.Size(72, 29);
+            this.ResetAllToDefault.TabIndex = 27;
+            this.ResetAllToDefault.Text = "Reset All";
+            this.ResetAllToDefault.UseVisualStyleBackColor = true;
+            this.ResetAllToDefault.Click += new System.EventHandler(this.ResetAllToDefault_Click);
             // 
-            // DefaultFontSizeLabel
-            // 
-            this.DefaultFontSizeLabel.AutoSize = true;
-            this.DefaultFontSizeLabel.Location = new System.Drawing.Point(58, 38);
-            this.DefaultFontSizeLabel.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.DefaultFontSizeLabel.Name = "DefaultFontSizeLabel";
-            this.DefaultFontSizeLabel.Size = new System.Drawing.Size(19, 13);
-            this.DefaultFontSizeLabel.TabIndex = 22;
-            this.DefaultFontSizeLabel.Text = "20";
-            // 
-            // CurrentFontSizeLabel
-            // 
-            this.CurrentFontSizeLabel.AutoSize = true;
-            this.CurrentFontSizeLabel.Location = new System.Drawing.Point(58, 38);
-            this.CurrentFontSizeLabel.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.CurrentFontSizeLabel.Name = "CurrentFontSizeLabel";
-            this.CurrentFontSizeLabel.Size = new System.Drawing.Size(19, 13);
-            this.CurrentFontSizeLabel.TabIndex = 23;
-            this.CurrentFontSizeLabel.Text = "20";
-            // 
-            // CurrentImageSizeLabel
-            // 
-            this.CurrentImageSizeLabel.AutoSize = true;
-            this.CurrentImageSizeLabel.Location = new System.Drawing.Point(188, 38);
-            this.CurrentImageSizeLabel.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.CurrentImageSizeLabel.Name = "CurrentImageSizeLabel";
-            this.CurrentImageSizeLabel.Size = new System.Drawing.Size(25, 13);
-            this.CurrentImageSizeLabel.TabIndex = 25;
-            this.CurrentImageSizeLabel.Text = "400";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(410, 7);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(70, 13);
-            this.label11.TabIndex = 2;
-            this.label11.Text = "Zoom factor -";
-            // 
-            // ZoomLabel
-            // 
-            this.ZoomLabel.AutoSize = true;
-            this.ZoomLabel.Location = new System.Drawing.Point(478, 7);
-            this.ZoomLabel.Name = "ZoomLabel";
-            this.ZoomLabel.Size = new System.Drawing.Size(33, 13);
-            this.ZoomLabel.TabIndex = 3;
-            this.ZoomLabel.Text = "x1.00";
-            // 
-            // ResetStyleToDefault
-            // 
-            this.ResetStyleToDefault.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.ResetStyleToDefault.Location = new System.Drawing.Point(175, 5);
-            this.ResetStyleToDefault.Name = "ResetStyleToDefault";
-            this.ResetStyleToDefault.Size = new System.Drawing.Size(51, 29);
-            this.ResetStyleToDefault.TabIndex = 26;
-            this.ResetStyleToDefault.Text = "Reset";
-            this.ResetStyleToDefault.UseVisualStyleBackColor = true;
-            this.ResetStyleToDefault.Click += new System.EventHandler(this.ResetStyleToDefault_Click);
-            // 
-            // Form1
+            // SentencesToImages
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -481,7 +494,7 @@
             this.Controls.Add(this.sentencesListBox);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "Form1";
+            this.Name = "SentencesToImages";
             this.Text = "Sentences To Images";
             ((System.ComponentModel.ISupportInitialize)(this.previewPictureBox)).EndInit();
             this.panel1.ResumeLayout(false);
@@ -540,6 +553,7 @@
         private System.Windows.Forms.Label ZoomLabel;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button ResetStyleToDefault;
+        private System.Windows.Forms.Button ResetAllToDefault;
     }
 }
 

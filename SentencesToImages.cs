@@ -9,11 +9,11 @@ using System.Windows.Forms;
 
 namespace SentencesToImages
 {
-    public partial class Form1 : Form
+    public partial class SentencesToImages : Form
     {
         private readonly List<SentenceGraphics> _sentences;
         private float previewZoom = 1f;
-        public Form1()
+        public SentencesToImages()
         {
             InitializeComponent();
             _sentences = new List<SentenceGraphics>();
@@ -216,6 +216,23 @@ namespace SentencesToImages
             CurrentImageSizeTrackBar_Scroll(sender, e);
             sentence.SetBackColor(defaultBackColorBox.BackColor);
             SentencesListBox_SelectedIndexChanged(sender, e);
+        }
+
+        private void ResetAllToDefault_Click(object sender, EventArgs e)
+        {
+            int fontSize = defaultFontSizeTrackBar.Value;
+            int imageSize = defaultImageSizeTrackBar.Value;
+            Color backColor = defaultBackColorBox.BackColor;
+            foreach (SentenceGraphics sentence in sentencesListBox.Items)
+            {
+                Font oldFont = SentenceGraphics.DEFAULT_FONT;
+                sentence.SetFont(new Font(oldFont.FontFamily, fontSize, oldFont.Style));
+                sentence.SetImageSize(new Size(imageSize, imageSize));
+                sentence.SetBackColor(backColor);
+                sentence.AutoReLine(10);
+            }
+
+            ResetStyleToDefault_Click(sender, e);
         }
     }
 }
