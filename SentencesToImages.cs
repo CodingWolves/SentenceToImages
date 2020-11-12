@@ -17,7 +17,8 @@ namespace SentencesToImages
         {
             InitializeComponent();
             _sentences = new List<SentenceGraphics>();
-            defaultBackColorBox.BackColor = SentenceGraphics.DEFAULT_BACK_COLOR;
+            DefaultBackColorBox.BackColor = SentenceGraphics.DEFAULT_BACK_COLOR;
+            ImageFormatComboBox.SelectedIndex = 0;
         }
 
         public void PreviewSentence()
@@ -100,7 +101,7 @@ namespace SentencesToImages
         {
             if (colorDialog1.ShowDialog() != DialogResult.OK) return;
             SentenceGraphics.DEFAULT_BACK_COLOR = colorDialog1.Color;
-            defaultBackColorBox.BackColor = SentenceGraphics.DEFAULT_BACK_COLOR;
+            DefaultBackColorBox.BackColor = SentenceGraphics.DEFAULT_BACK_COLOR;
         }
 
         private void SentencesListBox_KeyDown(object sender, KeyEventArgs e)
@@ -137,7 +138,7 @@ namespace SentencesToImages
             for(var i = 0; i < this._sentences.Count; i++)
             {
                 var sentence = this._sentences[i];
-                sentence.MakeBitmap().Save(path + "\\" + (i + 1) + ".png", ImageFormat.Png);
+                sentence.SaveBitmap(path , (i + 1).ToString() , ImageFormatComboBox.SelectedItem.ToString());
             }
             if(MessageBox.Show("Finished, do you want to open the folder?", "Finished", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
@@ -214,7 +215,7 @@ namespace SentencesToImages
             CurrentFontSizeTrackBar_Scroll(sender, e);
             currentImageSizeTrackBar.Value = defaultImageSizeTrackBar.Value;
             CurrentImageSizeTrackBar_Scroll(sender, e);
-            sentence.SetBackColor(defaultBackColorBox.BackColor);
+            sentence.SetBackColor(DefaultBackColorBox.BackColor);
             SentencesListBox_SelectedIndexChanged(sender, e);
         }
 
@@ -222,7 +223,7 @@ namespace SentencesToImages
         {
             int fontSize = defaultFontSizeTrackBar.Value;
             int imageSize = defaultImageSizeTrackBar.Value;
-            Color backColor = defaultBackColorBox.BackColor;
+            Color backColor = DefaultBackColorBox.BackColor;
             foreach (SentenceGraphics sentence in sentencesListBox.Items)
             {
                 Font oldFont = SentenceGraphics.DEFAULT_FONT;

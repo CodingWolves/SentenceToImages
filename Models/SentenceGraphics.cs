@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Encoder = System.Drawing.Imaging.Encoder;
 
 namespace SentencesToImages.Models
 {
@@ -147,6 +150,26 @@ namespace SentencesToImages.Models
             return bitmap;
         }
 
+        public void SaveBitmap(string path, string filename, string formatName)
+        {
+            string fullPath;
+            Bitmap bitmap = MakeBitmap();
+            ImageFormat format = GetImageFormatByString(formatName);
+            if(format.Equals(ImageFormat.Jpeg))
+            {
+                fullPath = path + "\\" + filename + ".jpg";
+
+                ImageCodecInfo codec = GetJpgCodec();
+                EncoderParameters eps = new EncoderParameters();
+                EncoderParameter e1 = new EncoderParameter(Encoder.Quality, 92L);
+                eps.Param = new EncoderParameter[] { e1 };
+                bitmap.Save(fullPath, codec, eps);
+                return;
+            }
+            fullPath = path + '\\' + filename + '.' + format.ToString().ToLower();
+            bitmap.Save(fullPath, format);
+        }
+
         public override string ToString()
         {
             StringBuilder builder = new StringBuilder();
@@ -157,6 +180,44 @@ namespace SentencesToImages.Models
             }
             builder.Remove(builder.Length - 1, 1);
             return builder.ToString();
+        }
+
+
+        private static ImageCodecInfo JpgCodec = null;
+        private static ImageCodecInfo GetJpgCodec()
+        {
+            if(JpgCodec != null)
+                return JpgCodec;
+
+            ImageCodecInfo[] codecs = ImageCodecInfo.GetImageDecoders();
+            foreach(ImageCodecInfo codec in codecs)
+            {
+                if(codec.FormatID == ImageFormat.Jpeg.Guid)
+                {
+                    JpgCodec = codec;
+                    return codec;
+                }
+            }
+            return null;
+        }
+        private static ImageFormat GetImageFormatByString(string formatName)
+        {
+            PropertyInfo[] properties = typeof(ImageFormat).GetProperties();
+            foreach(PropertyInfo prop in properties)
+            {
+                if(prop.Name.ToLower() == formatName.ToLower())
+                {
+                    return (ImageFormat)prop.GetMethod.Invoke(null, null);
+                }
+            }
+            switch(formatName.ToLower())
+            {
+                case "jpg":
+                return ImageFormat.Jpeg;
+                case "ico":
+                return ImageFormat.Icon;
+            }
+            return null;
         }
 
     }

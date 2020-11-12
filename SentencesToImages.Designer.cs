@@ -44,9 +44,10 @@
             this.fileDialog = new System.Windows.Forms.OpenFileDialog();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.currentBackColorBox = new System.Windows.Forms.PictureBox();
-            this.defaultBackColorBox = new System.Windows.Forms.PictureBox();
+            this.DefaultBackColorBox = new System.Windows.Forms.PictureBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.ResetAllToDefault = new System.Windows.Forms.Button();
             this.DefaultFontSizeLabel = new System.Windows.Forms.Label();
             this.DefaultImageSizeLabel = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -64,11 +65,12 @@
             this.currentFontSizeTrackBar = new System.Windows.Forms.TrackBar();
             this.label10 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.ResetAllToDefault = new System.Windows.Forms.Button();
+            this.ImageFormatComboBox = new System.Windows.Forms.ComboBox();
+            this.label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.previewPictureBox)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.currentBackColorBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.defaultBackColorBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DefaultBackColorBox)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.defaultImageSizeTrackBar)).BeginInit();
@@ -81,6 +83,7 @@
             // previewPictureBox
             // 
             this.previewPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.previewPictureBox.Cursor = System.Windows.Forms.Cursors.Cross;
             this.previewPictureBox.Location = new System.Drawing.Point(8, 23);
             this.previewPictureBox.Name = "previewPictureBox";
             this.previewPictureBox.Size = new System.Drawing.Size(511, 405);
@@ -142,6 +145,7 @@
             // 
             // addSensFileButton
             // 
+            this.addSensFileButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.addSensFileButton.Location = new System.Drawing.Point(8, 4);
             this.addSensFileButton.Margin = new System.Windows.Forms.Padding(2);
             this.addSensFileButton.Name = "addSensFileButton";
@@ -153,9 +157,10 @@
             // 
             // saveImagesButton
             // 
-            this.saveImagesButton.Location = new System.Drawing.Point(12, 385);
+            this.saveImagesButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.saveImagesButton.Location = new System.Drawing.Point(104, 385);
             this.saveImagesButton.Name = "saveImagesButton";
-            this.saveImagesButton.Size = new System.Drawing.Size(241, 53);
+            this.saveImagesButton.Size = new System.Drawing.Size(149, 53);
             this.saveImagesButton.TabIndex = 5;
             this.saveImagesButton.Text = "Save Images";
             this.saveImagesButton.UseVisualStyleBackColor = true;
@@ -170,6 +175,7 @@
             // 
             // chooseOutputFolderButton
             // 
+            this.chooseOutputFolderButton.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chooseOutputFolderButton.Location = new System.Drawing.Point(219, 358);
             this.chooseOutputFolderButton.Name = "chooseOutputFolderButton";
             this.chooseOutputFolderButton.Size = new System.Drawing.Size(34, 23);
@@ -205,6 +211,7 @@
             // currentBackColorBox
             // 
             this.currentBackColorBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.currentBackColorBox.Cursor = System.Windows.Forms.Cursors.Hand;
             this.currentBackColorBox.Location = new System.Drawing.Point(100, 4);
             this.currentBackColorBox.Margin = new System.Windows.Forms.Padding(2);
             this.currentBackColorBox.Name = "currentBackColorBox";
@@ -213,16 +220,17 @@
             this.currentBackColorBox.TabStop = false;
             this.currentBackColorBox.DoubleClick += new System.EventHandler(this.CurrentBackColorBox_DoubleClick);
             // 
-            // defaultBackColorBox
+            // DefaultBackColorBox
             // 
-            this.defaultBackColorBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.defaultBackColorBox.Location = new System.Drawing.Point(100, 4);
-            this.defaultBackColorBox.Margin = new System.Windows.Forms.Padding(2);
-            this.defaultBackColorBox.Name = "defaultBackColorBox";
-            this.defaultBackColorBox.Size = new System.Drawing.Size(30, 30);
-            this.defaultBackColorBox.TabIndex = 12;
-            this.defaultBackColorBox.TabStop = false;
-            this.defaultBackColorBox.DoubleClick += new System.EventHandler(this.DefaultBackColorBox_DoubleClick);
+            this.DefaultBackColorBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.DefaultBackColorBox.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.DefaultBackColorBox.Location = new System.Drawing.Point(100, 4);
+            this.DefaultBackColorBox.Margin = new System.Windows.Forms.Padding(2);
+            this.DefaultBackColorBox.Name = "DefaultBackColorBox";
+            this.DefaultBackColorBox.Size = new System.Drawing.Size(30, 30);
+            this.DefaultBackColorBox.TabIndex = 12;
+            this.DefaultBackColorBox.TabStop = false;
+            this.DefaultBackColorBox.DoubleClick += new System.EventHandler(this.DefaultBackColorBox_DoubleClick);
             // 
             // tabControl1
             // 
@@ -247,7 +255,7 @@
             this.tabPage1.Controls.Add(this.defaultFontSizeTrackBar);
             this.tabPage1.Controls.Add(this.label5);
             this.tabPage1.Controls.Add(this.label6);
-            this.tabPage1.Controls.Add(this.defaultBackColorBox);
+            this.tabPage1.Controls.Add(this.DefaultBackColorBox);
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage1.Name = "tabPage1";
@@ -256,6 +264,18 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Default";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // ResetAllToDefault
+            // 
+            this.ResetAllToDefault.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ResetAllToDefault.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            this.ResetAllToDefault.Location = new System.Drawing.Point(154, 5);
+            this.ResetAllToDefault.Name = "ResetAllToDefault";
+            this.ResetAllToDefault.Size = new System.Drawing.Size(72, 29);
+            this.ResetAllToDefault.TabIndex = 27;
+            this.ResetAllToDefault.Text = "Reset All";
+            this.ResetAllToDefault.UseVisualStyleBackColor = true;
+            this.ResetAllToDefault.Click += new System.EventHandler(this.ResetAllToDefault_Click);
             // 
             // DefaultFontSizeLabel
             // 
@@ -290,7 +310,8 @@
             // defaultImageSizeTrackBar
             // 
             this.defaultImageSizeTrackBar.AutoSize = false;
-            this.defaultImageSizeTrackBar.LargeChange = 100;
+            this.defaultImageSizeTrackBar.Cursor = System.Windows.Forms.Cursors.SizeWE;
+            this.defaultImageSizeTrackBar.LargeChange = 50;
             this.defaultImageSizeTrackBar.Location = new System.Drawing.Point(129, 53);
             this.defaultImageSizeTrackBar.Margin = new System.Windows.Forms.Padding(2);
             this.defaultImageSizeTrackBar.Maximum = 2000;
@@ -307,7 +328,7 @@
             // defaultFontSizeTrackBar
             // 
             this.defaultFontSizeTrackBar.AutoSize = false;
-            this.defaultFontSizeTrackBar.LargeChange = 10;
+            this.defaultFontSizeTrackBar.Cursor = System.Windows.Forms.Cursors.SizeWE;
             this.defaultFontSizeTrackBar.Location = new System.Drawing.Point(4, 53);
             this.defaultFontSizeTrackBar.Margin = new System.Windows.Forms.Padding(2);
             this.defaultFontSizeTrackBar.Maximum = 128;
@@ -364,6 +385,7 @@
             // 
             // ResetStyleToDefault
             // 
+            this.ResetStyleToDefault.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ResetStyleToDefault.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
             this.ResetStyleToDefault.Location = new System.Drawing.Point(175, 5);
             this.ResetStyleToDefault.Name = "ResetStyleToDefault";
@@ -406,7 +428,8 @@
             // currentImageSizeTrackBar
             // 
             this.currentImageSizeTrackBar.AutoSize = false;
-            this.currentImageSizeTrackBar.LargeChange = 100;
+            this.currentImageSizeTrackBar.Cursor = System.Windows.Forms.Cursors.SizeWE;
+            this.currentImageSizeTrackBar.LargeChange = 50;
             this.currentImageSizeTrackBar.Location = new System.Drawing.Point(129, 53);
             this.currentImageSizeTrackBar.Margin = new System.Windows.Forms.Padding(2);
             this.currentImageSizeTrackBar.Maximum = 2000;
@@ -433,7 +456,7 @@
             // currentFontSizeTrackBar
             // 
             this.currentFontSizeTrackBar.AutoSize = false;
-            this.currentFontSizeTrackBar.LargeChange = 10;
+            this.currentFontSizeTrackBar.Cursor = System.Windows.Forms.Cursors.SizeWE;
             this.currentFontSizeTrackBar.Location = new System.Drawing.Point(4, 53);
             this.currentFontSizeTrackBar.Margin = new System.Windows.Forms.Padding(2);
             this.currentFontSizeTrackBar.Maximum = 128;
@@ -467,22 +490,35 @@
             this.label4.TabIndex = 15;
             this.label4.Text = "Settings";
             // 
-            // ResetAllToDefault
+            // ImageFormatComboBox
             // 
-            this.ResetAllToDefault.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.ResetAllToDefault.Location = new System.Drawing.Point(154, 5);
-            this.ResetAllToDefault.Name = "ResetAllToDefault";
-            this.ResetAllToDefault.Size = new System.Drawing.Size(72, 29);
-            this.ResetAllToDefault.TabIndex = 27;
-            this.ResetAllToDefault.Text = "Reset All";
-            this.ResetAllToDefault.UseVisualStyleBackColor = true;
-            this.ResetAllToDefault.Click += new System.EventHandler(this.ResetAllToDefault_Click);
+            this.ImageFormatComboBox.FormattingEnabled = true;
+            this.ImageFormatComboBox.Items.AddRange(new object[] {
+            "Jpg",
+            "Bmp",
+            "Png",
+            "Tiff"});
+            this.ImageFormatComboBox.Location = new System.Drawing.Point(27, 408);
+            this.ImageFormatComboBox.Name = "ImageFormatComboBox";
+            this.ImageFormatComboBox.Size = new System.Drawing.Size(55, 21);
+            this.ImageFormatComboBox.TabIndex = 16;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(19, 392);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(71, 13);
+            this.label12.TabIndex = 17;
+            this.label12.Text = "Image Format";
             // 
             // SentencesToImages
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(796, 444);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.ImageFormatComboBox);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.label3);
@@ -500,7 +536,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.currentBackColorBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.defaultBackColorBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DefaultBackColorBox)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -531,7 +567,7 @@
         private System.Windows.Forms.OpenFileDialog fileDialog;
         private System.Windows.Forms.ColorDialog colorDialog1;
         private System.Windows.Forms.PictureBox currentBackColorBox;
-        private System.Windows.Forms.PictureBox defaultBackColorBox;
+        private System.Windows.Forms.PictureBox DefaultBackColorBox;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Label label8;
@@ -554,6 +590,8 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button ResetStyleToDefault;
         private System.Windows.Forms.Button ResetAllToDefault;
+        private System.Windows.Forms.ComboBox ImageFormatComboBox;
+        private System.Windows.Forms.Label label12;
     }
 }
 
