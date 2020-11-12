@@ -83,7 +83,7 @@
             // previewPictureBox
             // 
             this.previewPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.previewPictureBox.Cursor = System.Windows.Forms.Cursors.Cross;
+            this.previewPictureBox.Cursor = System.Windows.Forms.Cursors.Default;
             this.previewPictureBox.Location = new System.Drawing.Point(8, 23);
             this.previewPictureBox.Name = "previewPictureBox";
             this.previewPictureBox.Size = new System.Drawing.Size(511, 405);
@@ -135,7 +135,7 @@
             // sentencesListBox
             // 
             this.sentencesListBox.FormattingEnabled = true;
-            this.sentencesListBox.Location = new System.Drawing.Point(11, 220);
+            this.sentencesListBox.Location = new System.Drawing.Point(12, 214);
             this.sentencesListBox.Margin = new System.Windows.Forms.Padding(2);
             this.sentencesListBox.Name = "sentencesListBox";
             this.sentencesListBox.Size = new System.Drawing.Size(238, 121);
@@ -146,10 +146,10 @@
             // addSensFileButton
             // 
             this.addSensFileButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.addSensFileButton.Location = new System.Drawing.Point(8, 4);
+            this.addSensFileButton.Location = new System.Drawing.Point(8, 3);
             this.addSensFileButton.Margin = new System.Windows.Forms.Padding(2);
             this.addSensFileButton.Name = "addSensFileButton";
-            this.addSensFileButton.Size = new System.Drawing.Size(241, 53);
+            this.addSensFileButton.Size = new System.Drawing.Size(241, 47);
             this.addSensFileButton.TabIndex = 4;
             this.addSensFileButton.Text = "Add Sentences File";
             this.addSensFileButton.UseVisualStyleBackColor = true;
@@ -187,8 +187,8 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 343);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(6, 340);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(71, 13);
             this.label2.TabIndex = 8;
@@ -197,8 +197,8 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(5, 205);
-            this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label3.Location = new System.Drawing.Point(6, 196);
+            this.label3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(58, 13);
             this.label3.TabIndex = 9;
@@ -237,7 +237,7 @@
             this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(8, 74);
+            this.tabControl1.Location = new System.Drawing.Point(11, 73);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -483,20 +483,20 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(5, 59);
-            this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label4.Location = new System.Drawing.Point(6, 55);
+            this.label4.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(45, 13);
+            this.label4.Size = new System.Drawing.Size(71, 13);
             this.label4.TabIndex = 15;
-            this.label4.Text = "Settings";
+            this.label4.Text = "Style Settings";
             // 
             // ImageFormatComboBox
             // 
             this.ImageFormatComboBox.FormattingEnabled = true;
             this.ImageFormatComboBox.Items.AddRange(new object[] {
             "Jpg",
-            "Bmp",
             "Png",
+            "Bmp",
             "Tiff"});
             this.ImageFormatComboBox.Location = new System.Drawing.Point(27, 408);
             this.ImageFormatComboBox.Name = "ImageFormatComboBox";

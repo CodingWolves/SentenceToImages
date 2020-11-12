@@ -161,7 +161,7 @@ namespace SentencesToImages.Models
 
                 ImageCodecInfo codec = GetJpgCodec();
                 EncoderParameters eps = new EncoderParameters();
-                EncoderParameter e1 = new EncoderParameter(Encoder.Quality, 92L);
+                EncoderParameter e1 = new EncoderParameter(Encoder.Quality, 90L);
                 eps.Param = new EncoderParameter[] { e1 };
                 bitmap.Save(fullPath, codec, eps);
                 return;

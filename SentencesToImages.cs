@@ -18,7 +18,7 @@ namespace SentencesToImages
             InitializeComponent();
             _sentences = new List<SentenceGraphics>();
             DefaultBackColorBox.BackColor = SentenceGraphics.DEFAULT_BACK_COLOR;
-            ImageFormatComboBox.SelectedIndex = 0;
+            ImageFormatComboBox.SelectedIndex = 1;
         }
 
         public void PreviewSentence()
@@ -73,7 +73,8 @@ namespace SentencesToImages
         private void SentencesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             var sentence = (SentenceGraphics)sentencesListBox.SelectedItem;
-            if(sentence == null) return;
+            if(sentence == null)
+                return;
             //previewZoom = 1f;
             currentBackColorBox.BackColor = sentence.GetBackColor();
             currentFontSizeTrackBar.Value = (int)sentence.GetFont().Size;
@@ -92,14 +93,17 @@ namespace SentencesToImages
                 return;
             }
 
-            if (colorDialog1.ShowDialog() != DialogResult.OK) return;
+            if(colorDialog1.ShowDialog() != DialogResult.OK)
+                return;
             sentence.SetBackColor(colorDialog1.Color);
+            currentBackColorBox.BackColor = colorDialog1.Color;
             PreviewSentence();
         }
 
         private void DefaultBackColorBox_DoubleClick(object sender, EventArgs e)
         {
-            if (colorDialog1.ShowDialog() != DialogResult.OK) return;
+            if(colorDialog1.ShowDialog() != DialogResult.OK)
+                return;
             SentenceGraphics.DEFAULT_BACK_COLOR = colorDialog1.Color;
             DefaultBackColorBox.BackColor = SentenceGraphics.DEFAULT_BACK_COLOR;
         }
@@ -125,7 +129,7 @@ namespace SentencesToImages
             }
         }
 
-        
+
 
         private void SaveImagesButton_Click(object sender, EventArgs e)
         {
@@ -138,7 +142,7 @@ namespace SentencesToImages
             for(var i = 0; i < this._sentences.Count; i++)
             {
                 var sentence = this._sentences[i];
-                sentence.SaveBitmap(path , (i + 1).ToString() , ImageFormatComboBox.SelectedItem.ToString());
+                sentence.SaveBitmap(path, (i + 1).ToString(), ImageFormatComboBox.SelectedItem.ToString());
             }
             if(MessageBox.Show("Finished, do you want to open the folder?", "Finished", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
@@ -155,7 +159,7 @@ namespace SentencesToImages
             float numberOfScrolls = e.Delta * SystemInformation.MouseWheelScrollLines / 120f;
             previewZoom *= numberOfScrolls > 0 ? 1.25f : 0.8f;
 
-            ZoomLabel.Text = String.Format("x{0:F2}",previewZoom);
+            ZoomLabel.Text = String.Format("x{0:F2}", previewZoom);
 
             PreviewSentence();
         }
@@ -224,7 +228,7 @@ namespace SentencesToImages
             int fontSize = defaultFontSizeTrackBar.Value;
             int imageSize = defaultImageSizeTrackBar.Value;
             Color backColor = DefaultBackColorBox.BackColor;
-            foreach (SentenceGraphics sentence in sentencesListBox.Items)
+            foreach(SentenceGraphics sentence in sentencesListBox.Items)
             {
                 Font oldFont = SentenceGraphics.DEFAULT_FONT;
                 sentence.SetFont(new Font(oldFont.FontFamily, fontSize, oldFont.Style));
