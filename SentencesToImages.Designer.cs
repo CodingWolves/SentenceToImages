@@ -43,41 +43,52 @@
             this.label3 = new System.Windows.Forms.Label();
             this.fileDialog = new System.Windows.Forms.OpenFileDialog();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.currentBackColorBox = new System.Windows.Forms.PictureBox();
+            this.CurrentBackColorBox = new System.Windows.Forms.PictureBox();
             this.DefaultBackColorBox = new System.Windows.Forms.PictureBox();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.ResetAllToDefault = new System.Windows.Forms.Button();
+            this.SetDefaultStyleToAllButton = new System.Windows.Forms.Button();
             this.DefaultFontSizeLabel = new System.Windows.Forms.Label();
-            this.DefaultImageSizeLabel = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.defaultImageSizeTrackBar = new System.Windows.Forms.TrackBar();
             this.defaultFontSizeTrackBar = new System.Windows.Forms.TrackBar();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.ResetStyleToDefault = new System.Windows.Forms.Button();
-            this.CurrentImageSizeLabel = new System.Windows.Forms.Label();
+            this.SetDefaultStyleToCurrentButton = new System.Windows.Forms.Button();
+            this.CurrentImageWidthLabel = new System.Windows.Forms.Label();
             this.CurrentFontSizeLabel = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.currentImageSizeTrackBar = new System.Windows.Forms.TrackBar();
+            this.CurrentImageWidthTrackBar = new System.Windows.Forms.TrackBar();
             this.label7 = new System.Windows.Forms.Label();
-            this.currentFontSizeTrackBar = new System.Windows.Forms.TrackBar();
+            this.CurrentFontSizeTrackBar = new System.Windows.Forms.TrackBar();
             this.label10 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.ImageFormatComboBox = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.DefaultImageHeightLabel = new System.Windows.Forms.Label();
+            this.DefaultImageHeightTrackBar = new System.Windows.Forms.TrackBar();
+            this.label19 = new System.Windows.Forms.Label();
+            this.DefaultImageWidthLabel = new System.Windows.Forms.Label();
+            this.DefaultImageWidthTrackBar = new System.Windows.Forms.TrackBar();
+            this.label13 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.CurrentImageHeightLabel = new System.Windows.Forms.Label();
+            this.CurrentImageHeightTrackBar = new System.Windows.Forms.TrackBar();
+            this.label14 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.previewPictureBox)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.currentBackColorBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CurrentBackColorBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DefaultBackColorBox)).BeginInit();
-            this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.defaultImageSizeTrackBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.defaultFontSizeTrackBar)).BeginInit();
-            this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.currentImageSizeTrackBar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.currentFontSizeTrackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CurrentImageWidthTrackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CurrentFontSizeTrackBar)).BeginInit();
+            this.panel2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DefaultImageHeightTrackBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DefaultImageWidthTrackBar)).BeginInit();
+            this.panel3.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CurrentImageHeightTrackBar)).BeginInit();
             this.SuspendLayout();
             // 
             // previewPictureBox
@@ -135,10 +146,10 @@
             // sentencesListBox
             // 
             this.sentencesListBox.FormattingEnabled = true;
-            this.sentencesListBox.Location = new System.Drawing.Point(12, 214);
+            this.sentencesListBox.Location = new System.Drawing.Point(796, 21);
             this.sentencesListBox.Margin = new System.Windows.Forms.Padding(2);
             this.sentencesListBox.Name = "sentencesListBox";
-            this.sentencesListBox.Size = new System.Drawing.Size(238, 121);
+            this.sentencesListBox.Size = new System.Drawing.Size(189, 212);
             this.sentencesListBox.TabIndex = 3;
             this.sentencesListBox.SelectedIndexChanged += new System.EventHandler(this.SentencesListBox_SelectedIndexChanged);
             this.sentencesListBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.SentencesListBox_KeyDown);
@@ -149,7 +160,7 @@
             this.addSensFileButton.Location = new System.Drawing.Point(8, 3);
             this.addSensFileButton.Margin = new System.Windows.Forms.Padding(2);
             this.addSensFileButton.Name = "addSensFileButton";
-            this.addSensFileButton.Size = new System.Drawing.Size(241, 47);
+            this.addSensFileButton.Size = new System.Drawing.Size(241, 58);
             this.addSensFileButton.TabIndex = 4;
             this.addSensFileButton.Text = "Add Sentences File";
             this.addSensFileButton.UseVisualStyleBackColor = true;
@@ -158,7 +169,7 @@
             // saveImagesButton
             // 
             this.saveImagesButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.saveImagesButton.Location = new System.Drawing.Point(104, 385);
+            this.saveImagesButton.Location = new System.Drawing.Point(104, 379);
             this.saveImagesButton.Name = "saveImagesButton";
             this.saveImagesButton.Size = new System.Drawing.Size(149, 53);
             this.saveImagesButton.TabIndex = 5;
@@ -168,7 +179,7 @@
             // 
             // outputFolderTextBox
             // 
-            this.outputFolderTextBox.Location = new System.Drawing.Point(12, 359);
+            this.outputFolderTextBox.Location = new System.Drawing.Point(12, 353);
             this.outputFolderTextBox.Name = "outputFolderTextBox";
             this.outputFolderTextBox.Size = new System.Drawing.Size(201, 20);
             this.outputFolderTextBox.TabIndex = 6;
@@ -176,7 +187,7 @@
             // chooseOutputFolderButton
             // 
             this.chooseOutputFolderButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.chooseOutputFolderButton.Location = new System.Drawing.Point(219, 358);
+            this.chooseOutputFolderButton.Location = new System.Drawing.Point(219, 352);
             this.chooseOutputFolderButton.Name = "chooseOutputFolderButton";
             this.chooseOutputFolderButton.Size = new System.Drawing.Size(34, 23);
             this.chooseOutputFolderButton.TabIndex = 7;
@@ -187,7 +198,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 340);
+            this.label2.Location = new System.Drawing.Point(6, 334);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(71, 13);
@@ -197,7 +208,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 196);
+            this.label3.Location = new System.Drawing.Point(793, 3);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(58, 13);
@@ -208,23 +219,23 @@
             // 
             this.fileDialog.FileName = "fileDialog";
             // 
-            // currentBackColorBox
+            // CurrentBackColorBox
             // 
-            this.currentBackColorBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.currentBackColorBox.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.currentBackColorBox.Location = new System.Drawing.Point(100, 4);
-            this.currentBackColorBox.Margin = new System.Windows.Forms.Padding(2);
-            this.currentBackColorBox.Name = "currentBackColorBox";
-            this.currentBackColorBox.Size = new System.Drawing.Size(30, 30);
-            this.currentBackColorBox.TabIndex = 11;
-            this.currentBackColorBox.TabStop = false;
-            this.currentBackColorBox.DoubleClick += new System.EventHandler(this.CurrentBackColorBox_DoubleClick);
+            this.CurrentBackColorBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.CurrentBackColorBox.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.CurrentBackColorBox.Location = new System.Drawing.Point(122, 2);
+            this.CurrentBackColorBox.Margin = new System.Windows.Forms.Padding(2);
+            this.CurrentBackColorBox.Name = "CurrentBackColorBox";
+            this.CurrentBackColorBox.Size = new System.Drawing.Size(30, 30);
+            this.CurrentBackColorBox.TabIndex = 11;
+            this.CurrentBackColorBox.TabStop = false;
+            this.CurrentBackColorBox.DoubleClick += new System.EventHandler(this.CurrentBackColorBox_DoubleClick);
             // 
             // DefaultBackColorBox
             // 
             this.DefaultBackColorBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.DefaultBackColorBox.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.DefaultBackColorBox.Location = new System.Drawing.Point(100, 4);
+            this.DefaultBackColorBox.Location = new System.Drawing.Point(124, 2);
             this.DefaultBackColorBox.Margin = new System.Windows.Forms.Padding(2);
             this.DefaultBackColorBox.Name = "DefaultBackColorBox";
             this.DefaultBackColorBox.Size = new System.Drawing.Size(30, 30);
@@ -232,112 +243,40 @@
             this.DefaultBackColorBox.TabStop = false;
             this.DefaultBackColorBox.DoubleClick += new System.EventHandler(this.DefaultBackColorBox_DoubleClick);
             // 
-            // tabControl1
+            // SetDefaultStyleToAllButton
             // 
-            this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(11, 73);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(241, 118);
-            this.tabControl1.TabIndex = 14;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tabPage1.Controls.Add(this.ResetAllToDefault);
-            this.tabPage1.Controls.Add(this.DefaultFontSizeLabel);
-            this.tabPage1.Controls.Add(this.DefaultImageSizeLabel);
-            this.tabPage1.Controls.Add(this.label8);
-            this.tabPage1.Controls.Add(this.defaultImageSizeTrackBar);
-            this.tabPage1.Controls.Add(this.defaultFontSizeTrackBar);
-            this.tabPage1.Controls.Add(this.label5);
-            this.tabPage1.Controls.Add(this.label6);
-            this.tabPage1.Controls.Add(this.DefaultBackColorBox);
-            this.tabPage1.Location = new System.Drawing.Point(4, 25);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(2);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage1.Size = new System.Drawing.Size(233, 89);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Default";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // ResetAllToDefault
-            // 
-            this.ResetAllToDefault.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ResetAllToDefault.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.ResetAllToDefault.Location = new System.Drawing.Point(154, 5);
-            this.ResetAllToDefault.Name = "ResetAllToDefault";
-            this.ResetAllToDefault.Size = new System.Drawing.Size(72, 29);
-            this.ResetAllToDefault.TabIndex = 27;
-            this.ResetAllToDefault.Text = "Reset All";
-            this.ResetAllToDefault.UseVisualStyleBackColor = true;
-            this.ResetAllToDefault.Click += new System.EventHandler(this.ResetAllToDefault_Click);
+            this.SetDefaultStyleToAllButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SetDefaultStyleToAllButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            this.SetDefaultStyleToAllButton.Location = new System.Drawing.Point(186, 62);
+            this.SetDefaultStyleToAllButton.Name = "SetDefaultStyleToAllButton";
+            this.SetDefaultStyleToAllButton.Size = new System.Drawing.Size(50, 50);
+            this.SetDefaultStyleToAllButton.TabIndex = 27;
+            this.SetDefaultStyleToAllButton.Text = "Set All";
+            this.SetDefaultStyleToAllButton.UseVisualStyleBackColor = true;
+            this.SetDefaultStyleToAllButton.Click += new System.EventHandler(this.SetDefaultStyleToAllButton_Click);
             // 
             // DefaultFontSizeLabel
             // 
             this.DefaultFontSizeLabel.AutoSize = true;
-            this.DefaultFontSizeLabel.Location = new System.Drawing.Point(58, 38);
+            this.DefaultFontSizeLabel.Location = new System.Drawing.Point(25, 49);
             this.DefaultFontSizeLabel.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.DefaultFontSizeLabel.Name = "DefaultFontSizeLabel";
             this.DefaultFontSizeLabel.Size = new System.Drawing.Size(19, 13);
             this.DefaultFontSizeLabel.TabIndex = 22;
             this.DefaultFontSizeLabel.Text = "20";
             // 
-            // DefaultImageSizeLabel
-            // 
-            this.DefaultImageSizeLabel.AutoSize = true;
-            this.DefaultImageSizeLabel.Location = new System.Drawing.Point(188, 38);
-            this.DefaultImageSizeLabel.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.DefaultImageSizeLabel.Name = "DefaultImageSizeLabel";
-            this.DefaultImageSizeLabel.Size = new System.Drawing.Size(25, 13);
-            this.DefaultImageSizeLabel.TabIndex = 21;
-            this.DefaultImageSizeLabel.Text = "400";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(126, 38);
-            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(59, 13);
-            this.label8.TabIndex = 20;
-            this.label8.Text = "Image Size";
-            // 
-            // defaultImageSizeTrackBar
-            // 
-            this.defaultImageSizeTrackBar.AutoSize = false;
-            this.defaultImageSizeTrackBar.Cursor = System.Windows.Forms.Cursors.SizeWE;
-            this.defaultImageSizeTrackBar.LargeChange = 50;
-            this.defaultImageSizeTrackBar.Location = new System.Drawing.Point(129, 53);
-            this.defaultImageSizeTrackBar.Margin = new System.Windows.Forms.Padding(2);
-            this.defaultImageSizeTrackBar.Maximum = 2000;
-            this.defaultImageSizeTrackBar.Minimum = 200;
-            this.defaultImageSizeTrackBar.Name = "defaultImageSizeTrackBar";
-            this.defaultImageSizeTrackBar.Size = new System.Drawing.Size(100, 30);
-            this.defaultImageSizeTrackBar.SmallChange = 20;
-            this.defaultImageSizeTrackBar.TabIndex = 19;
-            this.defaultImageSizeTrackBar.TickFrequency = 150;
-            this.defaultImageSizeTrackBar.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
-            this.defaultImageSizeTrackBar.Value = 400;
-            this.defaultImageSizeTrackBar.Scroll += new System.EventHandler(this.DefaultImageSizeTrackBar_Scroll);
-            // 
             // defaultFontSizeTrackBar
             // 
             this.defaultFontSizeTrackBar.AutoSize = false;
-            this.defaultFontSizeTrackBar.Cursor = System.Windows.Forms.Cursors.SizeWE;
-            this.defaultFontSizeTrackBar.Location = new System.Drawing.Point(4, 53);
+            this.defaultFontSizeTrackBar.Cursor = System.Windows.Forms.Cursors.Default;
+            this.defaultFontSizeTrackBar.Location = new System.Drawing.Point(67, 36);
             this.defaultFontSizeTrackBar.Margin = new System.Windows.Forms.Padding(2);
-            this.defaultFontSizeTrackBar.Maximum = 128;
+            this.defaultFontSizeTrackBar.Maximum = 256;
             this.defaultFontSizeTrackBar.Minimum = 6;
             this.defaultFontSizeTrackBar.Name = "defaultFontSizeTrackBar";
-            this.defaultFontSizeTrackBar.Size = new System.Drawing.Size(100, 30);
-            this.defaultFontSizeTrackBar.SmallChange = 2;
+            this.defaultFontSizeTrackBar.Size = new System.Drawing.Size(120, 30);
             this.defaultFontSizeTrackBar.TabIndex = 18;
-            this.defaultFontSizeTrackBar.TickFrequency = 10;
+            this.defaultFontSizeTrackBar.TickFrequency = 15;
             this.defaultFontSizeTrackBar.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
             this.defaultFontSizeTrackBar.Value = 20;
             this.defaultFontSizeTrackBar.Scroll += new System.EventHandler(this.DefaultFontSizeTrackBar_Scroll);
@@ -345,7 +284,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(4, 38);
+            this.label5.Location = new System.Drawing.Point(9, 36);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(51, 13);
@@ -355,125 +294,92 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(4, 12);
+            this.label6.Location = new System.Drawing.Point(28, 10);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(92, 13);
             this.label6.TabIndex = 15;
             this.label6.Text = "Background Color";
             // 
-            // tabPage2
+            // SetDefaultStyleToCurrentButton
             // 
-            this.tabPage2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tabPage2.Controls.Add(this.ResetStyleToDefault);
-            this.tabPage2.Controls.Add(this.CurrentImageSizeLabel);
-            this.tabPage2.Controls.Add(this.CurrentFontSizeLabel);
-            this.tabPage2.Controls.Add(this.label9);
-            this.tabPage2.Controls.Add(this.currentBackColorBox);
-            this.tabPage2.Controls.Add(this.currentImageSizeTrackBar);
-            this.tabPage2.Controls.Add(this.label7);
-            this.tabPage2.Controls.Add(this.currentFontSizeTrackBar);
-            this.tabPage2.Controls.Add(this.label10);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(2);
-            this.tabPage2.Size = new System.Drawing.Size(233, 89);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Current";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.SetDefaultStyleToCurrentButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.SetDefaultStyleToCurrentButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
+            this.SetDefaultStyleToCurrentButton.Location = new System.Drawing.Point(186, 118);
+            this.SetDefaultStyleToCurrentButton.Name = "SetDefaultStyleToCurrentButton";
+            this.SetDefaultStyleToCurrentButton.Size = new System.Drawing.Size(50, 50);
+            this.SetDefaultStyleToCurrentButton.TabIndex = 26;
+            this.SetDefaultStyleToCurrentButton.Text = "Set Current";
+            this.SetDefaultStyleToCurrentButton.UseVisualStyleBackColor = true;
+            this.SetDefaultStyleToCurrentButton.Click += new System.EventHandler(this.SetDefaultStyleToCurrentButton_Click);
             // 
-            // ResetStyleToDefault
+            // CurrentImageWidthLabel
             // 
-            this.ResetStyleToDefault.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ResetStyleToDefault.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
-            this.ResetStyleToDefault.Location = new System.Drawing.Point(175, 5);
-            this.ResetStyleToDefault.Name = "ResetStyleToDefault";
-            this.ResetStyleToDefault.Size = new System.Drawing.Size(51, 29);
-            this.ResetStyleToDefault.TabIndex = 26;
-            this.ResetStyleToDefault.Text = "Reset";
-            this.ResetStyleToDefault.UseVisualStyleBackColor = true;
-            this.ResetStyleToDefault.Click += new System.EventHandler(this.ResetStyleToDefault_Click);
-            // 
-            // CurrentImageSizeLabel
-            // 
-            this.CurrentImageSizeLabel.AutoSize = true;
-            this.CurrentImageSizeLabel.Location = new System.Drawing.Point(188, 38);
-            this.CurrentImageSizeLabel.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
-            this.CurrentImageSizeLabel.Name = "CurrentImageSizeLabel";
-            this.CurrentImageSizeLabel.Size = new System.Drawing.Size(25, 13);
-            this.CurrentImageSizeLabel.TabIndex = 25;
-            this.CurrentImageSizeLabel.Text = "400";
+            this.CurrentImageWidthLabel.AutoSize = true;
+            this.CurrentImageWidthLabel.Location = new System.Drawing.Point(6, 35);
+            this.CurrentImageWidthLabel.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.CurrentImageWidthLabel.Name = "CurrentImageWidthLabel";
+            this.CurrentImageWidthLabel.Size = new System.Drawing.Size(25, 13);
+            this.CurrentImageWidthLabel.TabIndex = 25;
+            this.CurrentImageWidthLabel.Text = "400";
             // 
             // CurrentFontSizeLabel
             // 
             this.CurrentFontSizeLabel.AutoSize = true;
-            this.CurrentFontSizeLabel.Location = new System.Drawing.Point(58, 38);
+            this.CurrentFontSizeLabel.Location = new System.Drawing.Point(25, 53);
             this.CurrentFontSizeLabel.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.CurrentFontSizeLabel.Name = "CurrentFontSizeLabel";
             this.CurrentFontSizeLabel.Size = new System.Drawing.Size(19, 13);
             this.CurrentFontSizeLabel.TabIndex = 23;
             this.CurrentFontSizeLabel.Text = "20";
             // 
-            // label9
+            // CurrentImageWidthTrackBar
             // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(126, 38);
-            this.label9.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(59, 13);
-            this.label9.TabIndex = 24;
-            this.label9.Text = "Image Size";
-            // 
-            // currentImageSizeTrackBar
-            // 
-            this.currentImageSizeTrackBar.AutoSize = false;
-            this.currentImageSizeTrackBar.Cursor = System.Windows.Forms.Cursors.SizeWE;
-            this.currentImageSizeTrackBar.LargeChange = 50;
-            this.currentImageSizeTrackBar.Location = new System.Drawing.Point(129, 53);
-            this.currentImageSizeTrackBar.Margin = new System.Windows.Forms.Padding(2);
-            this.currentImageSizeTrackBar.Maximum = 2000;
-            this.currentImageSizeTrackBar.Minimum = 200;
-            this.currentImageSizeTrackBar.Name = "currentImageSizeTrackBar";
-            this.currentImageSizeTrackBar.Size = new System.Drawing.Size(100, 30);
-            this.currentImageSizeTrackBar.SmallChange = 21;
-            this.currentImageSizeTrackBar.TabIndex = 19;
-            this.currentImageSizeTrackBar.TickFrequency = 150;
-            this.currentImageSizeTrackBar.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
-            this.currentImageSizeTrackBar.Value = 400;
-            this.currentImageSizeTrackBar.Scroll += new System.EventHandler(this.CurrentImageSizeTrackBar_Scroll);
+            this.CurrentImageWidthTrackBar.AutoSize = false;
+            this.CurrentImageWidthTrackBar.Cursor = System.Windows.Forms.Cursors.Default;
+            this.CurrentImageWidthTrackBar.LargeChange = 20;
+            this.CurrentImageWidthTrackBar.Location = new System.Drawing.Point(49, 18);
+            this.CurrentImageWidthTrackBar.Margin = new System.Windows.Forms.Padding(2);
+            this.CurrentImageWidthTrackBar.Maximum = 2000;
+            this.CurrentImageWidthTrackBar.Minimum = 200;
+            this.CurrentImageWidthTrackBar.Name = "CurrentImageWidthTrackBar";
+            this.CurrentImageWidthTrackBar.Size = new System.Drawing.Size(127, 30);
+            this.CurrentImageWidthTrackBar.TabIndex = 19;
+            this.CurrentImageWidthTrackBar.TickFrequency = 150;
+            this.CurrentImageWidthTrackBar.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
+            this.CurrentImageWidthTrackBar.Value = 400;
+            this.CurrentImageWidthTrackBar.Scroll += new System.EventHandler(this.CurrentImageWidthTrackBar_Scroll);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(4, 12);
+            this.label7.Location = new System.Drawing.Point(26, 11);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(92, 13);
             this.label7.TabIndex = 15;
             this.label7.Text = "Background Color";
             // 
-            // currentFontSizeTrackBar
+            // CurrentFontSizeTrackBar
             // 
-            this.currentFontSizeTrackBar.AutoSize = false;
-            this.currentFontSizeTrackBar.Cursor = System.Windows.Forms.Cursors.SizeWE;
-            this.currentFontSizeTrackBar.Location = new System.Drawing.Point(4, 53);
-            this.currentFontSizeTrackBar.Margin = new System.Windows.Forms.Padding(2);
-            this.currentFontSizeTrackBar.Maximum = 128;
-            this.currentFontSizeTrackBar.Minimum = 6;
-            this.currentFontSizeTrackBar.Name = "currentFontSizeTrackBar";
-            this.currentFontSizeTrackBar.Size = new System.Drawing.Size(100, 30);
-            this.currentFontSizeTrackBar.SmallChange = 2;
-            this.currentFontSizeTrackBar.TabIndex = 22;
-            this.currentFontSizeTrackBar.TickFrequency = 10;
-            this.currentFontSizeTrackBar.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
-            this.currentFontSizeTrackBar.Value = 20;
-            this.currentFontSizeTrackBar.Scroll += new System.EventHandler(this.CurrentFontSizeTrackBar_Scroll);
+            this.CurrentFontSizeTrackBar.AutoSize = false;
+            this.CurrentFontSizeTrackBar.Cursor = System.Windows.Forms.Cursors.Default;
+            this.CurrentFontSizeTrackBar.Location = new System.Drawing.Point(64, 36);
+            this.CurrentFontSizeTrackBar.Margin = new System.Windows.Forms.Padding(2);
+            this.CurrentFontSizeTrackBar.Maximum = 256;
+            this.CurrentFontSizeTrackBar.Minimum = 6;
+            this.CurrentFontSizeTrackBar.Name = "CurrentFontSizeTrackBar";
+            this.CurrentFontSizeTrackBar.Size = new System.Drawing.Size(120, 30);
+            this.CurrentFontSizeTrackBar.TabIndex = 22;
+            this.CurrentFontSizeTrackBar.TickFrequency = 15;
+            this.CurrentFontSizeTrackBar.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
+            this.CurrentFontSizeTrackBar.Value = 20;
+            this.CurrentFontSizeTrackBar.Scroll += new System.EventHandler(this.CurrentFontSizeTrackBar_Scroll);
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(4, 38);
+            this.label10.Location = new System.Drawing.Point(9, 40);
             this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(51, 13);
@@ -483,12 +389,12 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 55);
+            this.label4.Location = new System.Drawing.Point(793, 242);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(71, 13);
+            this.label4.Size = new System.Drawing.Size(108, 13);
             this.label4.TabIndex = 15;
-            this.label4.Text = "Style Settings";
+            this.label4.Text = "Current Style Settings";
             // 
             // ImageFormatComboBox
             // 
@@ -498,7 +404,7 @@
             "Png",
             "Bmp",
             "Tiff"});
-            this.ImageFormatComboBox.Location = new System.Drawing.Point(27, 408);
+            this.ImageFormatComboBox.Location = new System.Drawing.Point(27, 402);
             this.ImageFormatComboBox.Name = "ImageFormatComboBox";
             this.ImageFormatComboBox.Size = new System.Drawing.Size(55, 21);
             this.ImageFormatComboBox.TabIndex = 16;
@@ -506,21 +412,211 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(19, 392);
+            this.label12.Location = new System.Drawing.Point(19, 386);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(71, 13);
             this.label12.TabIndex = 17;
             this.label12.Text = "Image Format";
             // 
+            // panel2
+            // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.SetDefaultStyleToAllButton);
+            this.panel2.Controls.Add(this.SetDefaultStyleToCurrentButton);
+            this.panel2.Controls.Add(this.groupBox3);
+            this.panel2.Controls.Add(this.label6);
+            this.panel2.Controls.Add(this.DefaultFontSizeLabel);
+            this.panel2.Controls.Add(this.DefaultBackColorBox);
+            this.panel2.Controls.Add(this.label5);
+            this.panel2.Controls.Add(this.defaultFontSizeTrackBar);
+            this.panel2.Location = new System.Drawing.Point(12, 93);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(241, 173);
+            this.panel2.TabIndex = 18;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.label16);
+            this.groupBox3.Controls.Add(this.DefaultImageHeightLabel);
+            this.groupBox3.Controls.Add(this.DefaultImageHeightTrackBar);
+            this.groupBox3.Controls.Add(this.label19);
+            this.groupBox3.Controls.Add(this.DefaultImageWidthLabel);
+            this.groupBox3.Controls.Add(this.DefaultImageWidthTrackBar);
+            this.groupBox3.Location = new System.Drawing.Point(3, 71);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(181, 97);
+            this.groupBox3.TabIndex = 30;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Image Size";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(6, 58);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(38, 13);
+            this.label16.TabIndex = 29;
+            this.label16.Text = "Height";
+            // 
+            // DefaultImageHeightLabel
+            // 
+            this.DefaultImageHeightLabel.AutoSize = true;
+            this.DefaultImageHeightLabel.Location = new System.Drawing.Point(6, 73);
+            this.DefaultImageHeightLabel.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.DefaultImageHeightLabel.Name = "DefaultImageHeightLabel";
+            this.DefaultImageHeightLabel.Size = new System.Drawing.Size(25, 13);
+            this.DefaultImageHeightLabel.TabIndex = 28;
+            this.DefaultImageHeightLabel.Text = "400";
+            this.DefaultImageHeightLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // DefaultImageHeightTrackBar
+            // 
+            this.DefaultImageHeightTrackBar.AutoSize = false;
+            this.DefaultImageHeightTrackBar.Cursor = System.Windows.Forms.Cursors.Default;
+            this.DefaultImageHeightTrackBar.LargeChange = 20;
+            this.DefaultImageHeightTrackBar.Location = new System.Drawing.Point(49, 56);
+            this.DefaultImageHeightTrackBar.Margin = new System.Windows.Forms.Padding(2);
+            this.DefaultImageHeightTrackBar.Maximum = 2000;
+            this.DefaultImageHeightTrackBar.Minimum = 200;
+            this.DefaultImageHeightTrackBar.Name = "DefaultImageHeightTrackBar";
+            this.DefaultImageHeightTrackBar.Size = new System.Drawing.Size(127, 30);
+            this.DefaultImageHeightTrackBar.TabIndex = 27;
+            this.DefaultImageHeightTrackBar.TickFrequency = 150;
+            this.DefaultImageHeightTrackBar.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
+            this.DefaultImageHeightTrackBar.Value = 400;
+            this.DefaultImageHeightTrackBar.Scroll += new System.EventHandler(this.DefaultImageHeightTrackBar_Scroll);
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(6, 20);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(35, 13);
+            this.label19.TabIndex = 26;
+            this.label19.Text = "Width";
+            // 
+            // DefaultImageWidthLabel
+            // 
+            this.DefaultImageWidthLabel.AutoSize = true;
+            this.DefaultImageWidthLabel.Location = new System.Drawing.Point(6, 35);
+            this.DefaultImageWidthLabel.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.DefaultImageWidthLabel.Name = "DefaultImageWidthLabel";
+            this.DefaultImageWidthLabel.Size = new System.Drawing.Size(25, 13);
+            this.DefaultImageWidthLabel.TabIndex = 25;
+            this.DefaultImageWidthLabel.Text = "400";
+            // 
+            // DefaultImageWidthTrackBar
+            // 
+            this.DefaultImageWidthTrackBar.AutoSize = false;
+            this.DefaultImageWidthTrackBar.Cursor = System.Windows.Forms.Cursors.Default;
+            this.DefaultImageWidthTrackBar.LargeChange = 20;
+            this.DefaultImageWidthTrackBar.Location = new System.Drawing.Point(49, 18);
+            this.DefaultImageWidthTrackBar.Margin = new System.Windows.Forms.Padding(2);
+            this.DefaultImageWidthTrackBar.Maximum = 2000;
+            this.DefaultImageWidthTrackBar.Minimum = 200;
+            this.DefaultImageWidthTrackBar.Name = "DefaultImageWidthTrackBar";
+            this.DefaultImageWidthTrackBar.Size = new System.Drawing.Size(127, 30);
+            this.DefaultImageWidthTrackBar.TabIndex = 19;
+            this.DefaultImageWidthTrackBar.TickFrequency = 150;
+            this.DefaultImageWidthTrackBar.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
+            this.DefaultImageWidthTrackBar.Value = 400;
+            this.DefaultImageWidthTrackBar.Scroll += new System.EventHandler(this.DefaultImageWidthTrackBar_Scroll);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(5, 77);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(108, 13);
+            this.label13.TabIndex = 19;
+            this.label13.Text = "Default Style Settings";
+            // 
+            // panel3
+            // 
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.groupBox1);
+            this.panel3.Controls.Add(this.CurrentBackColorBox);
+            this.panel3.Controls.Add(this.label10);
+            this.panel3.Controls.Add(this.CurrentFontSizeLabel);
+            this.panel3.Controls.Add(this.CurrentFontSizeTrackBar);
+            this.panel3.Controls.Add(this.label7);
+            this.panel3.Location = new System.Drawing.Point(796, 261);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(189, 177);
+            this.panel3.TabIndex = 20;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.label15);
+            this.groupBox1.Controls.Add(this.CurrentImageHeightLabel);
+            this.groupBox1.Controls.Add(this.CurrentImageHeightTrackBar);
+            this.groupBox1.Controls.Add(this.label14);
+            this.groupBox1.Controls.Add(this.CurrentImageWidthLabel);
+            this.groupBox1.Controls.Add(this.CurrentImageWidthTrackBar);
+            this.groupBox1.Location = new System.Drawing.Point(3, 76);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(181, 97);
+            this.groupBox1.TabIndex = 26;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Image Size";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(6, 58);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(38, 13);
+            this.label15.TabIndex = 29;
+            this.label15.Text = "Height";
+            // 
+            // CurrentImageHeightLabel
+            // 
+            this.CurrentImageHeightLabel.AutoSize = true;
+            this.CurrentImageHeightLabel.Location = new System.Drawing.Point(6, 73);
+            this.CurrentImageHeightLabel.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.CurrentImageHeightLabel.Name = "CurrentImageHeightLabel";
+            this.CurrentImageHeightLabel.Size = new System.Drawing.Size(25, 13);
+            this.CurrentImageHeightLabel.TabIndex = 28;
+            this.CurrentImageHeightLabel.Text = "400";
+            this.CurrentImageHeightLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // CurrentImageHeightTrackBar
+            // 
+            this.CurrentImageHeightTrackBar.AutoSize = false;
+            this.CurrentImageHeightTrackBar.Cursor = System.Windows.Forms.Cursors.Default;
+            this.CurrentImageHeightTrackBar.LargeChange = 20;
+            this.CurrentImageHeightTrackBar.Location = new System.Drawing.Point(49, 56);
+            this.CurrentImageHeightTrackBar.Margin = new System.Windows.Forms.Padding(2);
+            this.CurrentImageHeightTrackBar.Maximum = 2000;
+            this.CurrentImageHeightTrackBar.Minimum = 200;
+            this.CurrentImageHeightTrackBar.Name = "CurrentImageHeightTrackBar";
+            this.CurrentImageHeightTrackBar.Size = new System.Drawing.Size(127, 30);
+            this.CurrentImageHeightTrackBar.TabIndex = 27;
+            this.CurrentImageHeightTrackBar.TickFrequency = 150;
+            this.CurrentImageHeightTrackBar.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
+            this.CurrentImageHeightTrackBar.Value = 400;
+            this.CurrentImageHeightTrackBar.Scroll += new System.EventHandler(this.CurrentImageHeightTrackBar_Scroll);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(6, 20);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(35, 13);
+            this.label14.TabIndex = 26;
+            this.label14.Text = "Width";
+            // 
             // SentencesToImages
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(796, 444);
+            this.ClientSize = new System.Drawing.Size(996, 444);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.panel2);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.ImageFormatComboBox);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.chooseOutputFolderButton);
@@ -535,17 +631,22 @@
             ((System.ComponentModel.ISupportInitialize)(this.previewPictureBox)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.currentBackColorBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CurrentBackColorBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DefaultBackColorBox)).EndInit();
-            this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
-            this.tabPage1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.defaultImageSizeTrackBar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.defaultFontSizeTrackBar)).EndInit();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.currentImageSizeTrackBar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.currentFontSizeTrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CurrentImageWidthTrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CurrentFontSizeTrackBar)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DefaultImageHeightTrackBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DefaultImageWidthTrackBar)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CurrentImageHeightTrackBar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -566,32 +667,40 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.OpenFileDialog fileDialog;
         private System.Windows.Forms.ColorDialog colorDialog1;
-        private System.Windows.Forms.PictureBox currentBackColorBox;
+        private System.Windows.Forms.PictureBox CurrentBackColorBox;
         private System.Windows.Forms.PictureBox DefaultBackColorBox;
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TrackBar defaultImageSizeTrackBar;
         private System.Windows.Forms.TrackBar defaultFontSizeTrackBar;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TrackBar currentImageSizeTrackBar;
+        private System.Windows.Forms.TrackBar CurrentImageWidthTrackBar;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TrackBar currentFontSizeTrackBar;
+        private System.Windows.Forms.TrackBar CurrentFontSizeTrackBar;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label DefaultFontSizeLabel;
-        private System.Windows.Forms.Label DefaultImageSizeLabel;
         private System.Windows.Forms.Label CurrentFontSizeLabel;
-        private System.Windows.Forms.Label CurrentImageSizeLabel;
+        private System.Windows.Forms.Label CurrentImageWidthLabel;
         private System.Windows.Forms.Label ZoomLabel;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Button ResetStyleToDefault;
-        private System.Windows.Forms.Button ResetAllToDefault;
+        private System.Windows.Forms.Button SetDefaultStyleToCurrentButton;
+        private System.Windows.Forms.Button SetDefaultStyleToAllButton;
         private System.Windows.Forms.ComboBox ImageFormatComboBox;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label CurrentImageHeightLabel;
+        private System.Windows.Forms.TrackBar CurrentImageHeightTrackBar;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label DefaultImageHeightLabel;
+        private System.Windows.Forms.TrackBar DefaultImageHeightTrackBar;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label DefaultImageWidthLabel;
+        private System.Windows.Forms.TrackBar DefaultImageWidthTrackBar;
     }
 }
 
