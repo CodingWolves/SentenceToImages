@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Windows.Forms;
+using HorizontalAlignment = SentencesToImages.Models.HorizontalAlignment;
 
 namespace SentencesToImages
 {
@@ -13,14 +14,29 @@ namespace SentencesToImages
     {
         private readonly List<SentenceGraphics> _sentences;
         private float previewZoom = 1f;
-        private static readonly float MAX_PREVIEW_ZOOM = (float)Math.Pow(1.25,6); // ~ 3.81
-        private static readonly float MIN_PREVIEW_ZOOM = (float)Math.Pow(0.8,12); // ~ 0.07
+        private static readonly float MAX_PREVIEW_ZOOM = (float)Math.Pow(1.25, 6); // ~ 3.81
+        private static readonly float MIN_PREVIEW_ZOOM = (float)Math.Pow(0.8, 12); // ~ 0.07
         public SentencesToImages()
         {
             InitializeComponent();
             _sentences = new List<SentenceGraphics>();
-            DefaultBackColorBox.BackColor = SentenceGraphics.DEFAULT_BACK_COLOR;
+            DefaultBackColorBox.BackColor = Color.White;
             ImageFormatComboBox.SelectedIndex = 1;
+
+            foreach (VerticalAlignment vert in Enum.GetValues(typeof(VerticalAlignment)))
+            {
+                CurrentVertAlignComboBox.Items.Add(vert);
+                DefaultVertAlignComboBox.Items.Add(vert);
+            }
+
+            foreach (HorizontalAlignment hori in Enum.GetValues(typeof(HorizontalAlignment)))
+            {
+                CurrentHoriAlignComboBox.Items.Add(hori);
+                DefaultHoriAlignComboBox.Items.Add(hori);
+            }
+
+            DefaultVertAlignComboBox.SelectedItem = VerticalAlignment.Center;
+            DefaultHoriAlignComboBox.SelectedItem = HorizontalAlignment.Center;
         }
 
         #region Sentences ListBox
@@ -30,10 +46,17 @@ namespace SentencesToImages
             if (fileDialog.ShowDialog() == DialogResult.OK)
             {
                 var reader = new StreamReader(fileDialog.FileName);
+
+                Font font = new Font(family: FontFamily.GenericSansSerif, defaultFontSizeTrackBar.Value, FontStyle.Regular);
+                Size size = new Size(DefaultImageWidthTrackBar.Value, DefaultImageHeightTrackBar.Value);
+                Color backColor = DefaultBackColorBox.BackColor;
+                VerticalAlignment vert = (VerticalAlignment)DefaultVertAlignComboBox.SelectedItem;
+                HorizontalAlignment hori = (HorizontalAlignment)DefaultHoriAlignComboBox.SelectedItem;
+
                 while (reader.EndOfStream == false)
                 {
-                    var sentence = new SentenceGraphics(reader.ReadLine());
-                    sentence.AutoReLine(15);
+                    var sentence = new SentenceGraphics(font, size, backColor, vert, hori, reader.ReadLine());
+                    sentence.AutoReLine();
                     _sentences.Add(sentence);
                 }
                 reader.Close();
@@ -54,8 +77,11 @@ namespace SentencesToImages
             CurrentFontSizeLabel.Text = sentence.GetFont().Size.ToString();
             CurrentImageWidthLabel.Text = sentence.GetImageSize().Width.ToString();
             CurrentImageHeightLabel.Text = sentence.GetImageSize().Height.ToString();
+            CurrentVertAlignComboBox.SelectedItem = sentence.GetVerticalAlignment();
+            CurrentHoriAlignComboBox.SelectedItem = sentence.GetHorizontalAlignment();
             PreviewSentence();
         }
+
         private void RefreshSentencesListBox()
         {
             sentencesListBox.Items.Clear();
@@ -139,29 +165,24 @@ namespace SentencesToImages
         {
             if (colorDialog1.ShowDialog() != DialogResult.OK)
                 return;
-            SentenceGraphics.DEFAULT_BACK_COLOR = colorDialog1.Color;
-            DefaultBackColorBox.BackColor = SentenceGraphics.DEFAULT_BACK_COLOR;
+            DefaultBackColorBox.BackColor = colorDialog1.Color;
         }
 
         private void DefaultFontSizeTrackBar_Scroll(object sender, EventArgs e)
         {
             int fontSize = defaultFontSizeTrackBar.Value;
-            Font oldFont = SentenceGraphics.DEFAULT_FONT;
-            SentenceGraphics.DEFAULT_FONT = new Font(oldFont.FontFamily, fontSize, oldFont.Style);
             DefaultFontSizeLabel.Text = fontSize.ToString();
         }
 
         private void DefaultImageWidthTrackBar_Scroll(object sender, EventArgs e)
         {
             int imageWidth = DefaultImageWidthTrackBar.Value;
-            SentenceGraphics.DEFAULT_IMAGE_SIZE = new Size(imageWidth, SentenceGraphics.DEFAULT_IMAGE_SIZE.Height);
             DefaultImageWidthLabel.Text = imageWidth.ToString();
         }
 
         private void DefaultImageHeightTrackBar_Scroll(object sender, EventArgs e)
         {
             int imageHeight = DefaultImageHeightTrackBar.Value;
-            SentenceGraphics.DEFAULT_IMAGE_SIZE = new Size(SentenceGraphics.DEFAULT_IMAGE_SIZE.Width, imageHeight);
             DefaultImageHeightLabel.Text = imageHeight.ToString();
         }
 
@@ -176,13 +197,15 @@ namespace SentencesToImages
             CurrentImageHeightTrackBar.Value = DefaultImageHeightTrackBar.Value;
             CurrentImageWidthTrackBar_Scroll(sender, e);
             CurrentImageHeightTrackBar_Scroll(sender, e);
+            CurrentVertAlignComboBox.SelectedItem = DefaultVertAlignComboBox.SelectedItem;
+            CurrentHoriAlignComboBox.SelectedItem = DefaultHoriAlignComboBox.SelectedItem;
             sentence.SetBackColor(DefaultBackColorBox.BackColor);
             SentencesListBox_SelectedIndexChanged(sender, e);
         }
 
         private void SetDefaultStyleToAllButton_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to change all the sentences to the default settings?", 
+            if (MessageBox.Show("Are you sure you want to change all the sentences to the default settings?",
                 "Set all sentences",
                 MessageBoxButtons.YesNo) != DialogResult.Yes)
             {
@@ -193,13 +216,16 @@ namespace SentencesToImages
             int imageWidth = DefaultImageWidthTrackBar.Value;
             int imageHeight = DefaultImageHeightTrackBar.Value;
             Color backColor = DefaultBackColorBox.BackColor;
+            VerticalAlignment vert = (VerticalAlignment)DefaultVertAlignComboBox.SelectedItem;
+            HorizontalAlignment hori = (HorizontalAlignment)DefaultHoriAlignComboBox.SelectedItem;
             foreach (SentenceGraphics sentence in sentencesListBox.Items)
             {
-                Font oldFont = SentenceGraphics.DEFAULT_FONT;
-                sentence.SetFont(new Font(oldFont.FontFamily, fontSize, oldFont.Style));
+                sentence.SetFont(new Font(family: FontFamily.GenericSansSerif, fontSize, FontStyle.Regular));
                 sentence.SetImageSize(new Size(imageWidth, imageHeight));
                 sentence.SetBackColor(backColor);
-                sentence.AutoReLine(10);
+                sentence.SetVerticalAlignment(vert);
+                sentence.SetHorizontalAlignment(hori);
+                sentence.AutoReLine();
             }
 
             SetDefaultStyleToCurrentButton_Click(sender, e);
@@ -233,10 +259,9 @@ namespace SentencesToImages
             int fontSize = CurrentFontSizeTrackBar.Value;
             if (sentence.GetFont().Size == fontSize)
                 return;
-            Font oldFont = SentenceGraphics.DEFAULT_FONT;
-            sentence.SetFont(new Font(oldFont.FontFamily, fontSize, oldFont.Style));
+            sentence.SetFont(new Font(family: FontFamily.GenericSansSerif, fontSize, FontStyle.Regular));
             CurrentFontSizeLabel.Text = fontSize.ToString();
-            sentence.AutoReLine(10);
+            sentence.AutoReLine();
             PreviewSentence();
         }
 
@@ -250,7 +275,7 @@ namespace SentencesToImages
                 return;
             sentence.SetImageSize(new Size(imageWidth, sentence.GetImageSize().Height));
             CurrentImageWidthLabel.Text = imageWidth.ToString();
-            sentence.AutoReLine(10);
+            sentence.AutoReLine();
             PreviewSentence();
         }
 
@@ -264,7 +289,25 @@ namespace SentencesToImages
                 return;
             sentence.SetImageSize(new Size(sentence.GetImageSize().Width, imageHeight));
             CurrentImageHeightLabel.Text = imageHeight.ToString();
-            sentence.AutoReLine(10);
+            sentence.AutoReLine();
+            PreviewSentence();
+        }
+
+        private void CurrentVertAlignComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SentenceGraphics sentence = (SentenceGraphics)sentencesListBox.SelectedItem;
+            if (sentence == null)
+                return;
+            sentence.SetVerticalAlignment((VerticalAlignment)CurrentVertAlignComboBox.SelectedItem);
+            PreviewSentence();
+        }
+
+        private void CurrentHoriAlignComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SentenceGraphics sentence = (SentenceGraphics)sentencesListBox.SelectedItem;
+            if (sentence == null)
+                return;
+            sentence.SetHorizontalAlignment((HorizontalAlignment)CurrentHoriAlignComboBox.SelectedItem);
             PreviewSentence();
         }
 
@@ -299,5 +342,7 @@ namespace SentencesToImages
             }
         }
         #endregion
+
+        
     }
 }

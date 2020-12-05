@@ -10,21 +10,36 @@ using Encoder = System.Drawing.Imaging.Encoder;
 
 namespace SentencesToImages.Models
 {
+    public enum VerticalAlignment
+    {
+        Top,
+        Center,
+        Bottom
+    }
+    public enum HorizontalAlignment
+    {
+        Left,
+        Center,
+        Right
+    }
+
     public class SentenceGraphics
     {
-        public static Size DEFAULT_IMAGE_SIZE = new Size(400, 400);
-        public static Font DEFAULT_FONT = new Font(FontFamily.GenericSerif, 20, FontStyle.Regular);
-        public static Color DEFAULT_BACK_COLOR = Color.White;
         private Font font;
         private Size imageSize;
         private Color backColor;
+        private VerticalAlignment vertical;
+        private HorizontalAlignment horizontal;
+        private float padPercent = 5f;
         private List<string> textLines;
 
-        public SentenceGraphics(string text)
+        public SentenceGraphics(Font font, Size imageSize, Color backColor, VerticalAlignment vertical, HorizontalAlignment horizontal, string text)
         {
-            this.imageSize = DEFAULT_IMAGE_SIZE;
-            this.font = DEFAULT_FONT;
-            this.backColor = DEFAULT_BACK_COLOR;
+            this.font = font;
+            this.imageSize = imageSize;
+            this.backColor = backColor;
+            this.vertical = vertical;
+            this.horizontal = horizontal;
             this.textLines = new List<string>();
             this.textLines.Add(text.Trim(' '));
         }
@@ -55,6 +70,25 @@ namespace SentencesToImages.Models
         {
             this.backColor = backColor;
         }
+
+        public VerticalAlignment GetVerticalAlignment()
+        {
+            return this.vertical;
+        }
+        public void SetVerticalAlignment(VerticalAlignment vertical)
+        {
+            this.vertical = vertical;
+        }
+
+        public HorizontalAlignment GetHorizontalAlignment()
+        {
+            return this.horizontal;
+        }
+        public void SetHorizontalAlignment(HorizontalAlignment horizontal)
+        {
+            this.horizontal = horizontal;
+        }
+
 
         public string GetLine(int index)
         {
@@ -91,7 +125,7 @@ namespace SentencesToImages.Models
             this.textLines.RemoveAt(index + 1);
         }
 
-        public void AutoReLine(double paddingPercenteage)
+        public void AutoReLine()
         {
             while(this.textLines.Count > 1)
                 JoinLineAndNext(0);
@@ -104,7 +138,7 @@ namespace SentencesToImages.Models
             {
                 string text = this.textLines[i];
                 SizeF sizef = graphics.MeasureString(text, this.font);
-                if(sizef.Width > this.imageSize.Width * (1.0 - paddingPercenteage / 100))
+                if(sizef.Width > this.imageSize.Width * (1.0 - padPercent / 100))
                 {
                     if(spacesFromEnd > 0)
                     {
@@ -136,13 +170,32 @@ namespace SentencesToImages.Models
             graphics.Clear(this.backColor);
 
             float lineHeight = graphics.MeasureString("iLgypj", this.font).Height;
-            float startY = -lineHeight * (this.textLines.Count / 2f) + lineHeight / 2f;
+            float startY = 0;
+            switch (vertical)
+            {
+                case VerticalAlignment.Top:
+                    startY = 0; break;
+                case VerticalAlignment.Center:
+                    startY = imHei / 2f - lineHeight * (this.textLines.Count / 2f); break;
+                case VerticalAlignment.Bottom:
+                    startY = (float)imHei - (float)this.textLines.Count * lineHeight; break;
+            }
 
             for (int i=0;i<this.textLines.Count;i++)
             {
                 string text = this.textLines[i];
                 SizeF textSize = graphics.MeasureString(text, this.font);
-                graphics.DrawString(text, this.font, Brushes.Black, imWid / 2f - textSize.Width / 2f, startY + imHei / 2f - textSize.Height / 2f + lineHeight*i);
+                float drawX = 0;
+                switch (horizontal)
+                {
+                    case HorizontalAlignment.Left:
+                        drawX = 0; break;
+                    case HorizontalAlignment.Center:
+                        drawX = imWid / 2f - textSize.Width / 2f; break;
+                    case HorizontalAlignment.Right:
+                        drawX = imWid - textSize.Width; break;
+                }
+                graphics.DrawString(text, this.font, Brushes.Black, drawX, startY + lineHeight * i);
             }
 
             graphics.Flush();
@@ -203,22 +256,21 @@ namespace SentencesToImages.Models
         private static ImageFormat GetImageFormatByString(string formatName)
         {
             PropertyInfo[] properties = typeof(ImageFormat).GetProperties();
-            foreach(PropertyInfo prop in properties)
+            foreach (PropertyInfo prop in properties)
             {
-                if(prop.Name.ToLower() == formatName.ToLower())
+                if (prop.Name.ToLower() == formatName.ToLower())
                 {
                     return (ImageFormat)prop.GetMethod.Invoke(null, null);
                 }
             }
-            switch(formatName.ToLower())
+            switch (formatName.ToLower())
             {
                 case "jpg":
-                return ImageFormat.Jpeg;
+                    return ImageFormat.Jpeg;
                 case "ico":
-                return ImageFormat.Icon;
+                    return ImageFormat.Icon;
             }
             return null;
         }
-
     }
 }
